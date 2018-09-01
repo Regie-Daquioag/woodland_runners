@@ -26,14 +26,11 @@ body {
 }
 
 canvas {
-
   background-color:#ffffff;
 }
 
+img {
+  display: none;
 
-/* #myCanvas {
 
-  background-image:url(images/forestBackground.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-} */
+}
