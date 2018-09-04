@@ -26,11 +26,10 @@ body {
 }
 
 canvas {
+
   background-color:#ffffff;
 }
 
-img {
+img{
   display: none;
-
-
 }
