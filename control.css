@@ -26,10 +26,18 @@ body {
 }
 
 canvas {
-
-  background-color:#ffffff;
+  position: absolute;
+  background: transparent;
 }
 
 img{
   display: none;
+}
+
+#myCanvas {
+  	z-index: 0;
+}
+
+#pracCanvas {
+  	z-index: -1;
 }

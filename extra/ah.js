@@ -1,4 +1,4 @@
-(function(){
+
     function init(){
         //var canvas = document.getElementById('pracCanvas'); // getElementById // getElementsByTagName
         //var canvas = document.getElementsByTagName('canvas')[1];
@@ -6,7 +6,7 @@
 
         var img = document.getElementsByTagName('img')[0];
         var velocity = 200; //400pixels/second
-        var distance =0;
+        var distance = 0;
         var lastFrameRepaintTime =0;
 
 
@@ -58,8 +58,8 @@
 
     context = document.getElementById('myCanvas').getContext("2d");
 
-    context.canvas.height = 320;
-    context.canvas.width = 200;
+    context.canvas.height = 340; // 496
+    context.canvas.width = 220; // 318
     var line = (context.canvas.height / 1.2) - 2;
 
     rectangle = {
@@ -154,6 +154,3 @@
 
     window.addEventListener("keydown", controller.keyListener)
     window.addEventListener("keyup", controller.keyListener);
-    // window.requestAnimationFrame(loop);
-
-}()); //self invoking function
