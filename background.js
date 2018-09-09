@@ -35,5 +35,5 @@
         start();
     }
 
-//invoke function init once document is fully loaded
+    //invoke function init once document is fully loaded
     window.addEventListener('load',init,false);
