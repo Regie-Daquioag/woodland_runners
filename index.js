@@ -1,4 +1,4 @@
-
+animal
 /**
  * Define an object to hold all our images for the game so images
  * are only ever created once. This type of object is known as a
@@ -7,7 +7,7 @@
 var imageRepository = new function() {
 	// Define images
 	this.background = new Image();
-	this.spaceship = new Image();
+	this.animal = new Image();
 	// Ensure all images have loaded before starting the game
 	var numImages = 2;
 	var numLoaded = 0;
@@ -20,12 +20,12 @@ var imageRepository = new function() {
 	this.background.onload = function() {
 		imageLoaded();
 	}
-	this.spaceship.onload = function() {
+	this.animal.onload = function() {
 		imageLoaded();
 	}
 	// Set images src
 	this.background.src = "imgs/Background.png";
-	this.spaceship.src = "imgs/rabbits/Rabbit_1.png";
+	this.animal.src = "imgs/rabbits/Rabbit_1.png";
 }
 
 
@@ -45,7 +45,7 @@ function Drawable() {
  * canvas and creates the illusion of moving by panning the image.
  */
 function Background() {
-	// this.speed = 2; // Redefine speed of the background for panning
+	// this.speed = 1; // Redefine speed of the background for panning
 	// Implement abstract function
 	this.draw = function() {
 		///************************************************************************
@@ -65,7 +65,7 @@ function Background() {
 		this.context.drawImage(imageRepository.background, this.x, this.y);
 		this.context.drawImage(imageRepository.background, this.canvasWidth-Math.abs(this.x), this.y);
 		if(Math.abs(this.x) > this.canvasWidth){this.x = 0;}
-		this.x -= 1;
+		this.x -= 10;
 		///************************************************************************
 
 
@@ -75,23 +75,23 @@ function Background() {
 Background.prototype = new Drawable();
 
 /**
- * Create the Ship object that the player controls. The ship is
- * drawn on the "ship" canvas and uses dirty rectangles to move
+ * Create the animal object that the player controls. The animal is
+ * drawn on the "animal" canvas and uses dirty rectangles to move
  * around the screen.
  */
-function Ship() {
+function Animal() {
 	this.speed = 3;
 	var counter = 0;
 	this.draw = function() {
-		// is this the position of where the spaceship wil be
-		this.context.drawImage(imageRepository.spaceship, this.x, this.y,this.width,this.height);
+		// is this the position of where the animal wil be
+		this.context.drawImage(imageRepository.animal, this.x, this.y,this.width,this.height);
 	};
 	this.move = function() {
 		counter++;
 		// Determine if the action is move action
 		if (KEY_STATUS.left || KEY_STATUS.right ||
 			KEY_STATUS.down || KEY_STATUS.up) {
-			// The ship moved, so erase it's current image so it can
+			// The animal moved, so erase it's current image so it can
 			// be redrawn in it's new location
 			this.context.clearRect(this.x, this.y, this.width, this.height);
 			if (KEY_STATUS.up) {
@@ -103,12 +103,12 @@ function Ship() {
 				if (this.y >= this.canvasHeight - this.height)
 					this.y = this.canvasHeight - this.height;
 			}
-			// Finish by redrawing the ship
+			// Finish by redrawing the animal
 			this.draw();
 		}
 	};
 }
-Ship.prototype = new Drawable();
+Animal.prototype = new Drawable();
 
 
 // The keycodes that will be mapped when a user presses a button.
@@ -169,30 +169,30 @@ function Game() {
  this.init = function() {
 	 // Get the canvas elements
 	 this.bgCanvas = document.getElementById('background');
-	 this.shipCanvas = document.getElementById('ship');
+	 this.animalCanvas = document.getElementById('animal');
 	 // Test to see if canvas is supported. Only need to
 	 // check one canvas
 	 if (this.bgCanvas.getContext) {
 		 this.bgContext = this.bgCanvas.getContext('2d');
-		 this.shipContext = this.shipCanvas.getContext('2d');
+		 this.animalContext = this.animalCanvas.getContext('2d');
 		 // Initialize objects to contain their context and canvas
 		 // information
 		 Background.prototype.context = this.bgContext;
 		 Background.prototype.canvasWidth = this.bgCanvas.width;
 		 Background.prototype.canvasHeight = this.bgCanvas.height;
-		 Ship.prototype.context = this.shipContext;
-		 Ship.prototype.canvasWidth = this.shipCanvas.width;
-		 Ship.prototype.canvasHeight = this.shipCanvas.height;
+		 Animal.prototype.context = this.animalContext;
+		 Animal.prototype.canvasWidth = this.animalCanvas.width;
+		 Animal.prototype.canvasHeight = this.animalCanvas.height;
 		 // Initialize the background object
 		 this.background = new Background();
 		 this.background.init(0,0); // Set draw point to 0,0
-		 // Initialize the ship object
-		 this.ship = new Ship();
-		 // Set the ship to start near the bottom left of the canvas
-		 var shipStartX = this.shipCanvas.width/12 - imageRepository.spaceship.width;
-		 var shipStartY = this.shipCanvas.height/4*3;
-		 this.ship.init(shipStartX, shipStartY, imageRepository.spaceship.width,
-										imageRepository.spaceship.height);
+		 // Initialize the animal object
+		 this.animal = new Animal();
+		 // Set the animal to start near the bottom left of the canvas
+		 var animalStartX = this.animalCanvas.width/12 - imageRepository.animal.width;
+		 var animalStartY = this.animalCanvas.height/4*3;
+		 this.animal.init(animalStartX, animalStartY, imageRepository.animal.width,
+										imageRepository.animal.height);
 		 return true;
 	 } else {
 		 return false;
@@ -200,7 +200,7 @@ function Game() {
  };
  // Start the animation loop
  this.start = function() {
-	 this.ship.draw();
+	 this.animal.draw();
 	 animate();
  };
 }
@@ -213,7 +213,7 @@ function Game() {
 function animate() {
  requestAnimFrame( animate );
  game.background.draw();
- game.ship.move();
+ game.animal.move();
 }
 
 window.requestAnimFrame = (function(){
