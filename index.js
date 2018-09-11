@@ -37,6 +37,13 @@ function Drawable() {
 		this.width = width*2;
 		this.height = height*2;
 	}
+	this.speed = 0;
+
+	this.draw = function() {
+	};
+	this.move = function() {
+	};
+
 }
 
 /**
@@ -45,12 +52,12 @@ function Drawable() {
  * canvas and creates the illusion of moving by panning the image.
  */
 function Background() {
-	// this.speed = 1; // Redefine speed of the background for panning
+	this.speed = 1; // Redefine speed of the background for panning
 	// Implement abstract function
 	this.draw = function() {
 		///************************************************************************
 		// // Pan background
-		// this.x += this.speed;
+		this.x += this.speed;
 		// this.context.drawImage(imageRepository.background, this.x, this.y);
 		// // Draw another image at the top edge of the first image
 		// this.context.drawImage(imageRepository.background, this.x-this.canvasWidth, this.y);
