@@ -1,32 +1,70 @@
 <!DOCTYPE html>
-
 <html>
+	<head>
+		<title>Space Shooter Demo</title>
+		<style>
+			canvas {
+        display: block;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background: transparent;
+			}
+			#background {
+				z-index: -2;
+			}
+      #main {
+				z-index: -1;
+			}
+			#ship {
+				z-index: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- The canvas for the panning background -->
+		<canvas id="background" width="318" height="496"></canvas>
+		<!-- The canvas for all enemy ships and bullets -->
+		<canvas id="main" width="318" height="496"></canvas>
+		<!-- The canvas the ship uses (can only move up
+         one forth the screen.) -->
+		<canvas id="ship" width="318" height="496"></canvas>
 
-  <head>
+    <!-- <canvas width="500" height="400"></canvas> -->
 
-    <meta name = "viewport" content = "width=device-width">
-    <title>PoP Vlog - Control</title>
-    <link href = "control.css" rel = "stylesheet" type = "text/css">
-
-  </head>
-
-  <body>
-
-
-
-
-    <!-- width:318 height:496 -->
-    <canvas id="pracCanvas" width="318" height="496"></canvas>
-    <img src="images/Background.png">
-
-
-    <canvas id="myCanvas" width="318" height="496"></canvas>
-
-    <script src = "background.js"></script>
-    <script src = "animal.js"></script>
-
-  </body>
-
+		<script src="index.js"></script>
+	</body>
 </html>
 
 <!-- python -m SimpleHTTPServer -->
+
+
+
+
+<!-- var context = document.getElementById('bg').getContext('2d');
+var velocity = 200; //200pixels/second
+var distance = 0;
+var lastFrameRepaintTime = 0;
+
+var img = new Image();
+img.src = "images/Background.png";
+
+
+function calcOffset(time){
+    var frameGapTime = time - lastFrameRepaintTime;
+    lastFrameRepaintTime = time;
+    var translateX = velocity*(frameGapTime/1000);
+    return translateX;
+}
+
+function draw(time){
+   distance += calcOffset(time);
+    if(distance > img.width){distance = 0;}
+    context.clearRect(0,0,context.canvas.width, context.canvas.height);
+    context.save();
+    context.translate(distance,0);
+    context.drawImage(img,0,0);
+    context.drawImage(img,-img.width+1,0);
+    requestAnimationFrame(draw);
+    context.restore();
+} -->

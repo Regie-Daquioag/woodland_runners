@@ -1,0 +1,22 @@
+/* canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: transparent;
+}
+
+#animal {
+  	z-index: 0;
+}
+
+#background {
+  	z-index: -1;
+} */
+body {
+	background: whiteSmoke;
+}
+
+canvas {
+	display: block;
+	margin: 20px auto;
+}
