@@ -72,7 +72,7 @@ function Background() {
 		this.context.drawImage(imageRepository.background, this.x, this.y);
 		this.context.drawImage(imageRepository.background, this.canvasWidth-Math.abs(this.x), this.y);
 		if(Math.abs(this.x) > this.canvasWidth){this.x = 0;}
-		this.x -= 10;
+		this.x -= 2;
 		///************************************************************************
 
 
