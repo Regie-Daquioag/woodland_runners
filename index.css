@@ -1,22 +1,16 @@
 canvas {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background: transparent;
-}
-
-#animals {
-  	z-index: 0;
-}
-
-#background {
-  	z-index: -1;
-}
-/* body {
-	background: whiteSmoke;
-}
-
-canvas {
 	display: block;
-	margin: 20px auto;
-} */
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: transparent;
+}
+#background {
+	z-index: -2;
+}
+#main {
+	z-index: -1;
+}
+#animal {
+	z-index: 0;
+}
