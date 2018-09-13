@@ -2,24 +2,7 @@
 <html>
 	<head>
 		<title>Space Shooter Demo</title>
-		<style>
-			canvas {
-        display: block;
-				position: absolute;
-				top: 0px;
-				left: 0px;
-				background: transparent;
-			}
-			#background {
-				z-index: -2;
-			}
-      #main {
-				z-index: -1;
-			}
-			#animal {
-				z-index: 0;
-			}
-		</style>
+		<link href = "index.css" rel = "stylesheet" type = "text/css">
 	</head>
 	<body>
 		<!-- The canvas for the panning background -->
@@ -33,38 +16,12 @@
     <!-- <canvas width="500" height="400"></canvas> -->
 
 		<script src="index.js"></script>
+		<script src="background.js"></script>
+		<script src="animal.js"></script>
+		<script src="obstacles.js"></script>
+
+
 	</body>
 </html>
 
 <!-- python -m SimpleHTTPServer -->
-
-
-
-
-<!-- var context = document.getElementById('bg').getContext('2d');
-var velocity = 200; //200pixels/second
-var distance = 0;
-var lastFrameRepaintTime = 0;
-
-var img = new Image();
-img.src = "images/Background.png";
-
-
-function calcOffset(time){
-    var frameGapTime = time - lastFrameRepaintTime;
-    lastFrameRepaintTime = time;
-    var translateX = velocity*(frameGapTime/1000);
-    return translateX;
-}
-
-function draw(time){
-   distance += calcOffset(time);
-    if(distance > img.width){distance = 0;}
-    context.clearRect(0,0,context.canvas.width, context.canvas.height);
-    context.save();
-    context.translate(distance,0);
-    context.drawImage(img,0,0);
-    context.drawImage(img,-img.width+1,0);
-    requestAnimationFrame(draw);
-    context.restore();
-} -->
