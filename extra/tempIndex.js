@@ -3,15 +3,6 @@
  * are only ever created once. This type of object is known as a
  * singleton.
  */
-
- var game = new Game();
- function init() {
- 	if(game.init())
- 		game.start();
- }
-
-
-
  // Image factory
  var createImage = function(src) {
    var img   = new Image();
@@ -23,15 +14,16 @@
 
 var imageRepository = new function() {
 
+
 	// Define images
 	this.background = new Image();
 	this.animal = new Image();
-	// defined the enemy images
 	this.woodenStump = new Image();
 	this.woodenLog = new Image();
-	this.bird = new Image();
-	// changed it from 2 -> 5 for the stump and log
-	var numImages = 5;
+	// this.animal = [];
+
+	// Ensure all images have loaded before starting the game
+	var numImages = 4;
 	var numLoaded = 0;
 
 	function imageLoaded() {
@@ -43,30 +35,29 @@ var imageRepository = new function() {
 	}
 
 	this.background.onload = function() {
+		// numLoaded++;
 		imageLoaded();
 	}
 	this.animal.onload = function() {
 		imageLoaded();
 	}
-	// onload this stump and log
 	this.woodenStump.onload = function() {
 		imageLoaded();
 	}
 	this.woodenLog.onload = function() {
 		imageLoaded();
 	}
-	this.bird.onload = function() {
-		imageLoaded();
-	}
 
 	// Set images src
 	this.background.src = "imgs/Background.png";
 	this.animal.src = "imgs/rabbits/Rabbit_1.png";
-	// setting thr images for the stump/log/bird
 	this.woodenStump.src = "imgs/stump2.png";
 	this.woodenLog.src = "imgs/log.png";
-	this.bird.src = "imgs/Penguin_13.png";
-
+	// for(var i=1; i<=34;i++){
+	// 	var num = i.toString();
+	// 	this.animal.push("imgs/rabbits/Rabbit_"+num+".png");
+	// 	numLoaded++;
+	// }
 }
 
 
@@ -103,17 +94,13 @@ function Game() {
 	 // Get the canvas elements
 	 this.bgCanvas = document.getElementById('background');
 	 this.animalCanvas = document.getElementById('animal');
-	 // getting the canvas element for the stump/log (main)
-	 this.enemyCanvas = document.getElementById('main');
-
+	 this.mainCanvas = document.getElementById('main');
 	 // Test to see if canvas is supported. Only need to
 	 // check one canvas
 	 if (this.bgCanvas.getContext) {
 		 this.bgContext = this.bgCanvas.getContext('2d');
 		 this.animalContext = this.animalCanvas.getContext('2d');
-		 // setting up the enemy Context for the main canvas
-		 this.enemyContext = this.enemyCanvas.getContext('2d');
-
+		 this.mainContext = this.mainCanvas.getContext('2d');
 		 // Initialize objects to contain their context and canvas
 		 // information
 		 Background.prototype.context = this.bgContext;
@@ -124,11 +111,9 @@ function Game() {
 		 Animal.prototype.canvasWidth = this.animalCanvas.width;
 		 Animal.prototype.canvasHeight = this.animalCanvas.height;
 
-		 // initialized the enemy object to conatin context and canvas info
-		 Enemy.prototype.context = this.enemyContext;
-		 Enemy.prototype.canvasWidth = this.enemyCanvas.width;
-		 Enemy.prototype.canvasHeight = this.enemyCanvas.height;
-
+		 Enemy.prototype.context = this.mainContext;
+		 Enemy.prototype.canvasWidth = this.mainCanvas.width;
+		 Enemy.prototype.canvasHeight = this.mainCanvas.height;
 		 // Initialize the background object
 		 this.background = new Background();
 		 this.background.init(0,0); // Set draw point to 0,0
@@ -136,28 +121,21 @@ function Game() {
 		 this.animal = new Animal();
 		 // Set the animal to start near the bottom left of the canvas
 		 var animalStartX = this.animalCanvas.width/12 - imageRepository.animal.width;
-		 var animalStartY = this.animalCanvas.height/4*3+50;
+		 var animalStartY = this.animalCanvas.height/4*3;
 		 this.animal.init(animalStartX, animalStartY, imageRepository.animal.width,
 										imageRepository.animal.height);
 
+		// Initalize the pool(stumps/logs)
+		this.stumpPool = new Pool(2);
+		this.stumpPool.init("woodenStump");
 
-			// Initalize the pool(stumps/logs/bird)
-			this.stumpPool = new Pool(2);
-			this.stumpPool.init("woodenStump");
+		this.logPool = new Pool(2);
+		this.logPool.init("woodenLog");
 
-			this.logPool = new Pool(2);
-			this.logPool.init("woodenLog");
-
-			this.birdPool = new Pool(2);
-			this.birdPool.init("bird");
-
-
-
-
-			return true;
-				} else {
-			return false;
-				}
+		 return true;
+	 } else {
+		 return false;
+	 }
  };
  // Start the animation loop
  this.start = function() {
@@ -176,11 +154,7 @@ function animate() {
  requestAnimFrame( animate );
  game.background.draw();
  game.animal.move();
- game.stumpPool.animate();
- game.logPool.animate();
- game.birdPool.animate();
 }
-
 
 window.requestAnimFrame = (function(){
 	return  window.requestAnimationFrame   ||
@@ -192,3 +166,9 @@ window.requestAnimFrame = (function(){
 				window.setTimeout(callback, 1000 / 60);
 			};
 })();
+
+var game = new Game();
+function init() {
+	if(game.init())
+		game.start();
+}
