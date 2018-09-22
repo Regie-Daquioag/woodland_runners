@@ -7,6 +7,7 @@
  var game = new Game();
  function init() {
  	if(game.init())
+	console.log("game started");
  		game.start();
  }
 
@@ -22,7 +23,6 @@
 
 
 var imageRepository = new function() {
-
 	// Define images
 	this.background = new Image();
 	this.animal = new Image();
@@ -36,7 +36,7 @@ var imageRepository = new function() {
 
 	function imageLoaded() {
 		numLoaded++;
-		// console.log(numLoaded);
+		console.log("loaded image #"+numLoaded);
 		if (numLoaded === numImages) {
 			window.init();
 		}
@@ -65,18 +65,19 @@ var imageRepository = new function() {
 	// setting thr images for the stump/log/bird
 	this.woodenStump.src = "imgs/stump2.png";
 	this.woodenLog.src = "imgs/log.png";
-	this.bird.src = "imgs/Penguin_13.png";
+	this.bird.src = "imgs/bird.png";
 
 }
 
 
 function Drawable() {
+	console.log("went in the drawable function");
 	this.init = function(x, y, width, height) {
 		// Defualt variables
 		this.x = x;
 		this.y = y;
-		this.width = width*2;
-		this.height = height*2;
+		this.width = width*1.5;
+		this.height = height*1.5;
 	}
 	this.speed = 0;
 
@@ -84,7 +85,6 @@ function Drawable() {
 	};
 	this.move = function() {
 	};
-
 }
 
 /**
@@ -142,15 +142,65 @@ function Game() {
 
 
 			// Initalize the pool(stumps/logs/bird)
-			this.stumpPool = new Pool(2);
+			this.stumpPool = new Pool(3);
 			this.stumpPool.init("woodenStump");
 
-			this.logPool = new Pool(2);
+			this.logPool = new Pool(3);
 			this.logPool.init("woodenLog");
 
 			this.birdPool = new Pool(2);
 			this.birdPool.init("bird");
 
+
+			// Initialize the enemy pool object
+			// this.enemyPool = new Pool(10);
+			// this.enemyPool.init("enemy");
+
+
+			// var height = imageRepository.bird.height;
+			// var width = imageRepository.bird.width;
+			// var x = 100;
+			// var y = height;
+
+
+
+			// var x = this.enemyCanvas.width - imageRepository.animal.width;
+			// var y = this.enemyCanvas.height/4*3+50;
+
+
+			// var chance = Math.floor(Math.random()*3);
+			// console.log("chance = "+chance);
+			// if (chance == 1) {
+			  var temp = Math.floor(Math.random()*3);
+			  if(temp == 0){
+					var x = this.enemyCanvas.width - imageRepository.woodenStump.width*(1/10);
+					var y = this.enemyCanvas.height/4*3+50;
+					console.log("temp = 0");
+					this.stumpPool.get(x,y,2);
+			  }
+			  else if(temp == 1){
+					var x = this.enemyCanvas.width - imageRepository.woodenLog.width*(1/15);
+					var y = this.enemyCanvas.height/4*3+50;
+					console.log("temp = 1");
+					this.logPool.get(x,y,2);
+			  }
+			  else if(temp == 2){
+					var x = this.enemyCanvas.width - imageRepository.bird.width;
+					var y = this.enemyCanvas.height/4*3+50;
+					console.log("temp = 2");
+					this.birdPool.get(x,y,2);
+			  }
+			// }
+
+			// var spacer = y * 1.5;
+			// for (var i = 1; i <= 12; i++) {
+				// this.enemyPool.get(x,y,2);
+			// 	x += width + 20;
+			// 	if (i % 3 == 0) {
+			// 		x = 100;
+			// 		y += spacer
+			// 	}
+			// }
 
 
 
@@ -164,6 +214,28 @@ function Game() {
 	 this.animal.draw();
 	 animate();
  };
+
+ // this.loop = function(){
+	//  var temp = Math.floor(Math.random()*3);
+	//  if(temp == 0){
+	// 	 var x = this.enemyCanvas.width - imageRepository.woodenStump.width*(1/10)-10;
+	// 	 var y = this.enemyCanvas.height/4*3+50;
+	// 	 console.log("temp = 0");
+	// 	 this.stumpPool.get(x,y,2);
+	//  }
+	//  else if(temp == 1){
+	// 	 var x = this.enemyCanvas.width - imageRepository.woodenLog.width*(1/15)-5;
+	// 	 var y = this.enemyCanvas.height/4*3+50;
+	// 	 console.log("temp = 1");
+	// 	 this.logPool.get(x,y,2);
+	//  }
+	//  else if(temp == 2){
+	// 	 var x = this.enemyCanvas.width - imageRepository.bird.width;
+	// 	 var y = this.enemyCanvas.height/4*3+50;
+	// 	 console.log("temp = 2");
+	// 	 this.birdPool.get(x,y,2);
+	//  }
+ // };
 }
 
 /**
@@ -179,10 +251,11 @@ function animate() {
  game.stumpPool.animate();
  game.logPool.animate();
  game.birdPool.animate();
+ game.loop();
+ // game.enemyPool.animate();
 }
 
-
-window.requestAnimFrame = (function(){
+window.requestAnimFrame = function(){
 	return  window.requestAnimationFrame   ||
 			window.webkitRequestAnimationFrame ||
 			window.mozRequestAnimationFrame    ||
@@ -191,4 +264,4 @@ window.requestAnimFrame = (function(){
 			function(/* function */ callback, /* DOMElement */ element){
 				window.setTimeout(callback, 1000 / 60);
 			};
-})();
+}();

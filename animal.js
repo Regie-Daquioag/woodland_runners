@@ -6,13 +6,12 @@
  */
 function Animal() {
 	this.speed = 3;
-	var counter = 0;
 	this.draw = function() {
+
 		// is this the position of where the animal wil be
 		this.context.drawImage(imageRepository.animal, this.x, this.y,this.width,this.height);
 	};
 	this.move = function() {
-		counter++;
 		// Determine if the action is move action
 		if (KEY_STATUS.left || KEY_STATUS.right ||
 			KEY_STATUS.down || KEY_STATUS.up) {

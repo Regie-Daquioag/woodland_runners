@@ -1,11 +1,10 @@
 /**
  * Create the Enemy ship object.
  */
-function Enemy(object) {
+function Enemy() {
   console.log("went in the enemy function");
 	var percentFire = .01;
 	var chance = 0;
-  var self = object;
 	this.alive = false;
 
 	/*
@@ -18,6 +17,9 @@ function Enemy(object) {
 		this.speedX = 0;
 		this.speedY = speed;
 		this.alive = true;
+		this.leftEdge = this.x - 90;
+		this.rightEdge = this.x + 90;
+		this.bottomEdge = this.y + 140;
 	};
 
 	/*
@@ -26,17 +28,23 @@ function Enemy(object) {
 	this.draw = function() {
 		this.context.clearRect(this.x, this.y, this.width, this.height);
 
-		// this.context.drawImage(imageRepository.bird, this.x, this.y);
 
-    if (self === "woodenStump") {
-      this.context.drawImage(imageRepository.woodenStump, this.x, this.y,this.width*(1/10), this.height*(1/10));
-    }
-    else if (self === "woodenLog") {
-      this.context.drawImage(imageRepository.woodenLog, this.x, this.y, this.width*(1/15), this.height*(1/15));
-    }
-    else if (self === "bird") {
-      this.context.drawImage(imageRepository.bird, this.x, this.y, this.width, this.height);
-    }
+		// this.x += this.speedX;
+		// // this.y += this.speedY;
+		// if (this.x <= this.leftEdge) {
+		// 	this.speedX = this.speed;
+		// }
+		// else if (this.x >= this.rightEdge + this.width) {
+		// 	this.speedX = -this.speed;
+		// }
+		// else if (this.y >= this.bottomEdge) {
+		// 	this.speed = 1.5;
+		// 	this.speedY = 0;
+		// 	this.y -= 5;
+		// 	this.speedX = -this.speed;
+		// }
+
+		this.context.drawImage(imageRepository.bird, this.x, this.y);
 
 	};
 
