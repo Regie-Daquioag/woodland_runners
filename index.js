@@ -251,7 +251,7 @@ function animate() {
  game.stumpPool.animate();
  game.logPool.animate();
  game.birdPool.animate();
- game.loop();
+ // game.loop();
  // game.enemyPool.animate();
 }
 
