@@ -1,4 +1,4 @@
-animal
+//animal
 /**
  * Define an object to hold all our images for the game so images
  * are only ever created once. This type of object is known as a
@@ -25,7 +25,8 @@ var imageRepository = new function() {
 	}
 	// Set images src
 	this.background.src = "imgs/Background.png";
-	this.animal.src = "imgs/rabbits/Rabbit_1.png";
+	this.animal.src = "imgs/rabbits/Rabbit_30.png";
+
 }
 
 
@@ -65,9 +66,8 @@ function Background() {
 		this.context.drawImage(imageRepository.background, this.x, this.y);
 		this.context.drawImage(imageRepository.background, this.canvasWidth-Math.abs(this.x), this.y);
 		if(Math.abs(this.x) > this.canvasWidth){this.x = 0;}
-		this.x -= 10;
+		this.x -= 1; //change canves speed
 		///************************************************************************
-
 
 	};
 }
@@ -227,8 +227,56 @@ window.requestAnimFrame = (function(){
 			};
 })();
 
+
+/* Counting setInterval() Method */
+function myFunction() {
+    setInterval(function(){ alert("Hello"); }, 3000);
+}
+
+
+//********************************************
+
+var seconds = 0,
+	t;
+
+function add() {
+    seconds++;
+    document.getElementById("stopwatch").textContent = seconds + '';
+
+    timer();
+}
+
+function timer() {
+	//time
+	t = setTimeout(add, 10);
+
+}
+
+
+/* Start button */
+//start.onclick = timer;
+
+/* Stop button */
+function stop()  {
+	this.init = function() {
+	//need this code inside just to end timer
+    clearTimeout(t);
+};
+}
+
+/* Clear button */
+function clear() {
+	this.init = function() {
+		//restart timer
+	    document.getElementById("stopwatch").textContent = "000000";
+	    seconds = 0;
+	};
+}
+
 var game = new Game();
 function init() {
 	if(game.init())
 		game.start();
+		timer();
 }
+
