@@ -12,6 +12,11 @@ canvas {
 #background {
   	z-index: -1;
 }
+
+#stopwatch {
+	color: white;
+}
+
 /* body {
 	background: whiteSmoke;
 }

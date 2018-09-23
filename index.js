@@ -242,19 +242,14 @@ var seconds = 0,
 function add() {
     seconds++;
     document.getElementById("stopwatch").textContent = seconds + '';
-
+    
     timer();
 }
 
 function timer() {
 	//time
 	t = setTimeout(add, 10);
-
 }
-
-
-/* Start button */
-//start.onclick = timer;
 
 /* Stop button */
 function stop()  {
