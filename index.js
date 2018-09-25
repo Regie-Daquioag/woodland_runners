@@ -148,60 +148,8 @@ function Game() {
 			this.logPool = new Pool(3);
 			this.logPool.init("woodenLog");
 
-			this.birdPool = new Pool(2);
+			this.birdPool = new Pool(3);
 			this.birdPool.init("bird");
-
-
-			// Initialize the enemy pool object
-			// this.enemyPool = new Pool(10);
-			// this.enemyPool.init("enemy");
-
-
-			// var height = imageRepository.bird.height;
-			// var width = imageRepository.bird.width;
-			// var x = 100;
-			// var y = height;
-
-
-
-			// var x = this.enemyCanvas.width - imageRepository.animal.width;
-			// var y = this.enemyCanvas.height/4*3+50;
-
-
-			// var chance = Math.floor(Math.random()*3);
-			// console.log("chance = "+chance);
-			// if (chance == 1) {
-			  var temp = Math.floor(Math.random()*3);
-			  if(temp == 0){
-					var x = this.enemyCanvas.width - imageRepository.woodenStump.width*(1/10);
-					var y = this.enemyCanvas.height/4*3+50;
-					console.log("temp = 0");
-					this.stumpPool.get(x,y,2);
-			  }
-			  else if(temp == 1){
-					var x = this.enemyCanvas.width - imageRepository.woodenLog.width*(1/15);
-					var y = this.enemyCanvas.height/4*3+50;
-					console.log("temp = 1");
-					this.logPool.get(x,y,2);
-			  }
-			  else if(temp == 2){
-					var x = this.enemyCanvas.width - imageRepository.bird.width;
-					var y = this.enemyCanvas.height/4*3+50;
-					console.log("temp = 2");
-					this.birdPool.get(x,y,2);
-			  }
-			// }
-
-			// var spacer = y * 1.5;
-			// for (var i = 1; i <= 12; i++) {
-				// this.enemyPool.get(x,y,2);
-			// 	x += width + 20;
-			// 	if (i % 3 == 0) {
-			// 		x = 100;
-			// 		y += spacer
-			// 	}
-			// }
-
 
 
 			return true;
@@ -215,27 +163,31 @@ function Game() {
 	 animate();
  };
 
- // this.loop = function(){
-	//  var temp = Math.floor(Math.random()*3);
-	//  if(temp == 0){
-	// 	 var x = this.enemyCanvas.width - imageRepository.woodenStump.width*(1/10)-10;
-	// 	 var y = this.enemyCanvas.height/4*3+50;
-	// 	 console.log("temp = 0");
-	// 	 this.stumpPool.get(x,y,2);
-	//  }
-	//  else if(temp == 1){
-	// 	 var x = this.enemyCanvas.width - imageRepository.woodenLog.width*(1/15)-5;
-	// 	 var y = this.enemyCanvas.height/4*3+50;
-	// 	 console.log("temp = 1");
-	// 	 this.logPool.get(x,y,2);
-	//  }
-	//  else if(temp == 2){
-	// 	 var x = this.enemyCanvas.width - imageRepository.bird.width;
-	// 	 var y = this.enemyCanvas.height/4*3+50;
-	// 	 console.log("temp = 2");
-	// 	 this.birdPool.get(x,y,2);
-	//  }
- // };
+ this.loop = function(){
+	 var chance = Math.floor(Math.random()*161);
+	 // console.log("chance = "+chance);
+	 if (chance % 15 == 0) {
+	 var temp = Math.floor(Math.random()*9+1);
+	 if(temp % 3 == 0){
+		 var x = this.enemyCanvas.width - imageRepository.woodenStump.width*(1/10)-10;
+		 var y = this.enemyCanvas.height/4*3+50;
+		 console.log("STUMP");
+		 this.stumpPool.get(x,y,2);
+	 }
+	 else if(temp % 3 == 1){
+		 var x = this.enemyCanvas.width - imageRepository.woodenLog.width*(1/20)-5;
+		 var y = this.enemyCanvas.height/4*3+50;
+		 console.log("LOG");
+		 this.logPool.get(x,y,2);
+	 }
+	 else if(temp == 2){
+		 var x = this.enemyCanvas.width - imageRepository.bird.width;
+		 var y = this.enemyCanvas.height/4*3+13;
+		 console.log("BIRD");
+		 this.birdPool.get(x,y,2);
+	 }
+ }
+ };
 }
 
 /**
@@ -247,12 +199,12 @@ function Game() {
 function animate() {
  requestAnimFrame( animate );
  game.background.draw();
+ game.loop();
  game.animal.move();
  game.stumpPool.animate();
  game.logPool.animate();
  game.birdPool.animate();
- // game.loop();
- // game.enemyPool.animate();
+ game.loop();
 }
 
 window.requestAnimFrame = function(){

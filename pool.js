@@ -31,23 +31,23 @@
 	this.init = function(object) {
 		if (object == "woodenStump") {
 			for (var i = 0; i < size; i++) {
-				var enemy = new Enemy("woodenStump");
-				enemy.init(0,0, imageRepository.woodenStump.width, imageRepository.woodenStump.height);
-				pool[i] = enemy;
+				var stump = new Enemy("woodenStump");
+				stump.init(0,0, imageRepository.woodenStump.width, imageRepository.woodenStump.height);
+				pool[i] = stump;
 			}
 		}
 		else if (object == "bird") {
 			for (var i = 0; i < size; i++) {
-				var enemy = new Enemy("bird");
-				enemy.init(0,0, imageRepository.bird.width, imageRepository.bird.height);
-				pool[i] = enemy;
+				var bird = new Enemy("bird");
+				bird.init(0,0, imageRepository.bird.width, imageRepository.bird.height);
+				pool[i] = bird;
 			}
 		}
 		else if (object == "woodenLog") {
 			for (var i = 0; i < size; i++) {
-				var enemy = new Enemy("woodenLog");
-				enemy.init(0,0, imageRepository.woodenLog.width, imageRepository.woodenLog.height);
-				pool[i] = enemy;
+				var log = new Enemy("woodenLog");
+				log.init(0,0, imageRepository.woodenLog.width, imageRepository.woodenLog.height);
+				pool[i] = log;
 			}
 		}
 	};
