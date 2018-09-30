@@ -60,7 +60,7 @@ var imageRepository = new function() {
 	}
 
 	// Set images src
-	this.background.src = "imgs/Background.png";
+	this.background.src = "imgs/Forest-Game-Background.png";
 	this.animal.src = "imgs/rabbits/Rabbit_1.png";
 	// setting thr images for the stump/log/bird
 	this.woodenStump.src = "imgs/stump2.png";
@@ -76,8 +76,8 @@ function Drawable() {
 		// Defualt variables
 		this.x = x;
 		this.y = y;
-		this.width = width*1.5;
-		this.height = height*1.5;
+		this.width = width*2.5;
+		this.height = height*2.5;
 	}
 	this.speed = 0;
 
@@ -136,7 +136,7 @@ function Game() {
 		 this.animal = new Animal();
 		 // Set the animal to start near the bottom left of the canvas
 		 var animalStartX = this.animalCanvas.width/12 - imageRepository.animal.width;
-		 var animalStartY = this.animalCanvas.height/4*3+50;
+		 var animalStartY = this.animalCanvas.height/4*3;
 		 this.animal.init(animalStartX, animalStartY, imageRepository.animal.width,
 										imageRepository.animal.height);
 
@@ -170,19 +170,19 @@ function Game() {
 	 var temp = Math.floor(Math.random()*9+1);
 	 if(temp % 3 == 0){
 		 var x = this.enemyCanvas.width - imageRepository.woodenStump.width*(1/10)-10;
-		 var y = this.enemyCanvas.height/4*3+50;
+		 var y = this.enemyCanvas.height/4*3+70-50;
 		 console.log("STUMP");
 		 this.stumpPool.get(x,y,2);
 	 }
 	 else if(temp % 3 == 1){
 		 var x = this.enemyCanvas.width - imageRepository.woodenLog.width*(1/20)-5;
-		 var y = this.enemyCanvas.height/4*3+50;
+		 var y = this.enemyCanvas.height/4*3+50-50;
 		 console.log("LOG");
 		 this.logPool.get(x,y,2);
 	 }
 	 else if(temp == 2){
 		 var x = this.enemyCanvas.width - imageRepository.bird.width;
-		 var y = this.enemyCanvas.height/4*3+13;
+		 var y = this.enemyCanvas.height/4*3+13-50;
 		 console.log("BIRD");
 		 this.birdPool.get(x,y,2);
 	 }
