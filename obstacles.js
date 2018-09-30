@@ -18,6 +18,7 @@ function Enemy(object) {
 		this.speedX = 0;
 		this.speedY = speed;
 		this.alive = true;
+
 	};
 
 	/*
@@ -39,33 +40,16 @@ function Enemy(object) {
     }
     else{
       if (self === "woodenStump") {
-        this.context.drawImage(imageRepository.woodenStump, this.x, this.y,this.width*(1/10), this.height*(1/10));
+        this.context.drawImage(imageRepository.woodenStump, this.x, this.y,this.width*(1/15), this.height*(1/15));
       }
       else if (self === "woodenLog") {
-        this.context.drawImage(imageRepository.woodenLog, this.x, this.y, this.width*(1/15), this.height*(1/15));
+        this.context.drawImage(imageRepository.woodenLog, this.x, this.y, this.width*(1/20), this.height*(1/20));
       }
       else if (self === "bird") {
         this.context.drawImage(imageRepository.bird, this.x, this.y, this.width, this.height);
       }
       return false;
     }
-
-
-
-
-
-    // if (self === "woodenStump") {
-    //   this.context.drawImage(imageRepository.woodenStump, this.x, this.y,this.width*(1/10), this.height*(1/10));
-    // }
-    // else if (self === "woodenLog") {
-    //   this.context.drawImage(imageRepository.woodenLog, this.x, this.y, this.width*(1/15), this.height*(1/15));
-    // }
-    // else if (self === "bird") {
-    //   this.context.drawImage(imageRepository.bird, this.x, this.y, this.width, this.height);
-    // }
-
-
-
 	};
 
 	/*
