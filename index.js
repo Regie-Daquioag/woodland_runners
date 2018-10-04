@@ -63,9 +63,18 @@ var imageRepository = new function() {
 	this.background.src = "imgs/Forest-Game-Background.png";
 	this.animal.src = "imgs/rabbits/Rabbit_1.png";
 	// setting thr images for the stump/log/bird
-	this.woodenStump.src = "imgs/stump2.png";
-	this.woodenLog.src = "imgs/log.png";
-	this.bird.src = "imgs/bird.png";
+  	this.bird.src = "imgs/bird.png";
+
+
+    this.woodenStump.src = "imgs/frog.png";
+    this.woodenLog.src = "imgs/panda.png";
+
+
+
+	// this.woodenStump.src = "imgs/stump2.png";
+	// this.woodenLog.src = "imgs/log.png";
+
+
 
 }
 
@@ -136,19 +145,19 @@ function Game() {
 		 this.animal = new Animal();
 		 // Set the animal to start near the bottom left of the canvas
 		 var animalStartX = this.animalCanvas.width/12 - imageRepository.animal.width;
-		 var animalStartY = this.animalCanvas.height/4*3;
+		 var animalStartY = this.animalCanvas.height/4*3+20;
 		 this.animal.init(animalStartX, animalStartY, imageRepository.animal.width,
 										imageRepository.animal.height);
 
 
 			// Initalize the pool(stumps/logs/bird)
-			this.stumpPool = new Pool(3);
+			this.stumpPool = new Pool(1);
 			this.stumpPool.init("woodenStump");
 
-			this.logPool = new Pool(3);
+			this.logPool = new Pool(2);
 			this.logPool.init("woodenLog");
 
-			this.birdPool = new Pool(3);
+			this.birdPool = new Pool(1);
 			this.birdPool.init("bird");
 
 
@@ -167,28 +176,38 @@ function Game() {
 	 var chance = Math.floor(Math.random()*161);
 	 // console.log("chance = "+chance);
 	 if (chance % 15 == 0) {
-	 var temp = Math.floor(Math.random()*9+1);
-	 if(temp % 3 == 0){
+	 var temp = Math.floor(Math.random()*20+1);
+	 if(temp % 9 == 0){
 		 var x = this.enemyCanvas.width - imageRepository.woodenStump.width*(1/10)-10;
-		 var y = this.enemyCanvas.height/4*3+70-50;
+		 var y = this.enemyCanvas.height/4*3+100-50 +20;
 		 console.log("STUMP");
 		 this.stumpPool.get(x,y,2);
 	 }
-	 else if(temp % 3 == 1){
-		 var x = this.enemyCanvas.width - imageRepository.woodenLog.width*(1/20)-5;
-		 var y = this.enemyCanvas.height/4*3+50-50;
-		 console.log("LOG");
-		 this.logPool.get(x,y,2);
+	 else if(temp % 9 == 1){
+     var x = this.enemyCanvas.width - imageRepository.bird.width;
+     var y = this.enemyCanvas.height/4*3-50 +20;
+		 // console.log("LOG");
+		 // this.logPool.get(x,y,2);
+
+     console.log("BIRD");
+     this.birdPool.get(x,y,2);
 	 }
-	 else if(temp == 2){
-		 var x = this.enemyCanvas.width - imageRepository.bird.width;
-		 var y = this.enemyCanvas.height/4*3+13-50;
-		 console.log("BIRD");
-		 this.birdPool.get(x,y,2);
+	 else if(temp % 9 == 2){
+     var x = this.enemyCanvas.width - imageRepository.woodenLog.width*(1/20)-5;
+		 var y = this.enemyCanvas.height/4*3+50-50 +20;
+		 // console.log("BIRD");
+		 // this.birdPool.get(x,y,2);
+
+     console.log("LOG");
+		 this.logPool.get(x,y,2);
 	 }
  }
  };
 }
+
+
+// var x = this.enemyCanvas.width - imageRepository.bird.width;
+// var y = this.enemyCanvas.height/4*3+13-50;
 
 /**
 * The animation loop. Calls the requestAnimationFrame shim to
@@ -199,7 +218,6 @@ function Game() {
 function animate() {
  requestAnimFrame( animate );
  game.background.draw();
- game.loop();
  game.animal.move();
  game.stumpPool.animate();
  game.logPool.animate();

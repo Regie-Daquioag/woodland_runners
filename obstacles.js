@@ -40,10 +40,10 @@ function Enemy(object) {
     }
     else{
       if (self === "woodenStump") {
-        this.context.drawImage(imageRepository.woodenStump, this.x, this.y,this.width*(1/15), this.height*(1/15));
+        this.context.drawImage(imageRepository.woodenStump, this.x, this.y,this.width/*(1/15)-10*/, this.height/**(1/15)-10*/);
       }
       else if (self === "woodenLog") {
-        this.context.drawImage(imageRepository.woodenLog, this.x, this.y, this.width*(1/20), this.height*(1/20));
+        this.context.drawImage(imageRepository.woodenLog, this.x, this.y, this.width/*(1/20)-10*/, this.height/*(1/20)-10*/);
       }
       else if (self === "bird") {
         this.context.drawImage(imageRepository.bird, this.x, this.y, this.width, this.height);
