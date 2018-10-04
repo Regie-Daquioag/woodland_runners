@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Space Shooter Demo</title>
+		<link href = "index.css" rel = "stylesheet" type = "text/css">
+
+	</head>
+	<body>
+		<!-- The canvas for the panning background -->
+		<canvas id="background" width="318" height="496"></canvas>
+		<!-- The canvas for all enemy ships and bullets -->
+		<canvas id="main" width="318" height="496"></canvas>
+		<!-- The canvas the ship uses (can only move up one forth the screen.) -->
+		<canvas id="animal" width="318" height="496"></canvas>
+
+    <!-- <canvas width="500" height="400"></canvas> -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script src="index.js"></script>
+		<script src="background.js"></script>
+		<script src="animal.js"></script>
+		<script src="obstacles.js"></script>
+		<script src="pool.js"></script>
+
+
+	</body>
+</html>
+
+<!-- python -m SimpleHTTPServer -->

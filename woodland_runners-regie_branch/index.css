@@ -1,0 +1,16 @@
+canvas {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: transparent;
+}
+#background {
+	z-index: -2;
+}
+#main {
+	z-index: -1;
+}
+#animal {
+	z-index: 0;
+}
