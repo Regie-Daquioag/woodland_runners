@@ -4,13 +4,14 @@
 
 
   this.getPool = function() {
-		var obj = [];
-		for (var i = 0; i < size; i++) {
-			if (pool[i].alive) {
-				obj.push(pool[i]);
-			}
-		}
-		return obj;
+  		var obj = [];
+  		for (var i = 0; i < size; i++) {
+  			if (pool[i].alive) {
+  				obj.push(pool[i]);
+  			}
+  		}
+  		return obj;
+  	}
 
 	/*
 	 * Populates the pool array with the given object
