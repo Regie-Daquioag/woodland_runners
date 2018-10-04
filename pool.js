@@ -21,6 +21,8 @@
 			for (var i = 0; i < size; i++) {
 				var enemy1 = new Enemy("enemy1");
 				enemy1.init(0,0, imageRepository.enemy1.width, imageRepository.enemy1.height);
+        enemy1.collidableWith = "animal";
+				enemy1.type = "enemy";
 				pool[i] = enemy1;
 			}
 		}
@@ -28,6 +30,8 @@
 			for (var i = 0; i < size; i++) {
 				var enemy2 = new Enemy("enemy2");
 				enemy2.init(0,0, imageRepository.enemy2.width, imageRepository.enemy2.height);
+        enemy2.collidableWith = "animal";
+				enemy2.type = "enemy";
 				pool[i] = enemy2;
 			}
 		}
@@ -35,6 +39,8 @@
 			for (var i = 0; i < size; i++) {
 				var enemy3 = new Enemy("enemy3");
 				enemy3.init(0,0, imageRepository.enemy3.width, imageRepository.enemy3.height);
+        enemy3.collidableWith = "animal";
+				enemy3.type = "enemy";
 				pool[i] = enemy3;
 			}
 		}

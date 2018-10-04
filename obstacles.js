@@ -2,11 +2,12 @@
  * Create the Enemy ship object.
  */
 function Enemy(object) {
-  console.log("went in the enemy function");
 	var percentFire = .01;
 	var chance = 0;
   var self = object;
 	this.alive = false;
+  this.collidableWith = "animal";
+	this.type = "enemy";
 
 	/*
 	 * Sets the Enemy values
@@ -26,9 +27,12 @@ function Enemy(object) {
 	 */
 	this.draw = function() {
 		this.context.clearRect(this.x, this.y, this.width, this.height);
-
     this.x -= this.speed;
-    if(self == "enemy1" && this.x <= 0 - this.width){
+
+    if (this.isColliding) {
+			return true;
+		}
+    else if(self == "enemy1" && this.x <= 0 - this.width){
       return true;
     }
     else if(self == "enemy2" && this.x <= 0 - this.width){
@@ -61,6 +65,7 @@ function Enemy(object) {
 		this.speedX = 0;
 		this.speedY = 0;
 		this.alive = false;
+    this.isColliding = false;
 	};
 }
 Enemy.prototype = new Drawable();

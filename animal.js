@@ -6,8 +6,10 @@
  */
 function Animal() {
 	this.speed = 3;
-	this.draw = function() {
+	this.collidableWith = "enemy";
+	this.type = "animal";
 
+	this.draw = function() {
 		// is this the position of where the animal wil be
 		this.context.drawImage(imageRepository.animal, this.x, this.y,this.width,this.height);
 	};
@@ -28,7 +30,9 @@ function Animal() {
 					this.y = this.canvasHeight - this.height;
 			}
 			// Finish by redrawing the animal
-			this.draw();
+			if (!this.isColliding) {
+				this.draw();
+			}
 		}
 	};
 }

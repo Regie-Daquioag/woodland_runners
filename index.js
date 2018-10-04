@@ -80,6 +80,8 @@ function Drawable() {
 		this.height = height*2.5;
 	}
 	this.speed = 0;
+  this.collidableWith = "";
+	this.isColliding = false;
 
 	this.draw = function() {
 	};
@@ -151,6 +153,8 @@ function Game() {
 			this.enemy3Pool = new Pool(2);
 			this.enemy3Pool.init("enemy3");
 
+      // Start QuadTree
+      this.quadTree = new QuadTree({x:0,y:0,width:this.enemyCanvas.width,height:this.enemyCanvas.height});
 
 
 			return true;
@@ -172,9 +176,6 @@ function Game() {
    if(temp % 9 == 0){
      var x = this.enemyCanvas.width - imageRepository.enemy1.width;
      var y = this.enemyCanvas.height/4*3-50+20;
-		 // console.log("LOG");
-		 // this.logPool.get(x,y,2);
-
      console.log("enemy1");
      this.enemy1Pool.get(x,y,2);
 	 }
@@ -187,15 +188,35 @@ function Game() {
 	 else if(temp % 9 == 2){
      var x = this.enemyCanvas.width - imageRepository.enemy3.width*(1/20)-5;
 		 var y = this.enemyCanvas.height/4*3+50-50+20;
-		 // console.log("enemy1");
-		 // this.enemy1Pool.get(x,y,2);
-
      console.log("enemy3");
 		 this.enemy3Pool.get(x,y,2);
 	 }
  }
  };
 }
+
+
+function detectCollision() {
+	var objects = [];
+	game.quadTree.getAllObjects(objects);
+
+	for (var x = 0, len = objects.length; x < len; x++) {
+		game.quadTree.findObjects(obj = [], objects[x]);
+
+		for (var y = 0, length = obj.length; y < length; y++) {
+
+			// DETECT COLLISION ALGORITHM
+			if (objects[x].collidableWith === obj[y].type &&
+				(objects[x].x < obj[y].x + obj[y].width &&
+			     objects[x].x + objects[x].width > obj[y].x &&
+				 objects[x].y < obj[y].y + obj[y].height &&
+				 objects[x].y + objects[x].height > obj[y].y)) {
+				objects[x].isColliding = true;
+				obj[y].isColliding = true;
+			}
+		}
+	}
+};
 
 
 /**
@@ -205,13 +226,22 @@ function Game() {
 * object.
 */
 function animate() {
- requestAnimFrame( animate );
- game.background.draw();
- game.animal.move();
- game.enemy1Pool.animate();
- game.enemy2Pool.animate();
- game.enemy3Pool.animate();
- game.loop();
+  // Insert objects into quadtree
+	game.quadTree.clear();
+	game.quadTree.insert(game.animal);
+	game.quadTree.insert(game.enemy1Pool.getPool());
+	game.quadTree.insert(game.enemy2Pool.getPool());
+	game.quadTree.insert(game.enemy3Pool.getPool());
+
+  detectCollision();
+
+  requestAnimFrame( animate );
+  game.background.draw();
+  game.animal.move();
+  game.enemy1Pool.animate();
+  game.enemy2Pool.animate();
+  game.enemy3Pool.animate();
+  game.loop();
 }
 
 window.requestAnimFrame = function(){
