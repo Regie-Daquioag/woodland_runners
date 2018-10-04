@@ -80,12 +80,17 @@ function Drawable() {
 		this.height = height*2.5;
 	}
 	this.speed = 0;
+  this.canvasWidth = 0;
+	this.canvasHeight = 0;
   this.collidableWith = "";
 	this.isColliding = false;
 
 	this.draw = function() {
 	};
 	this.move = function() {
+	};
+  this.isCollidableWith = function(object) {
+		return (this.collidableWith === object.type);
 	};
 }
 
