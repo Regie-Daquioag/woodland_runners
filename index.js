@@ -15,8 +15,8 @@
 
  // Image factory
  var createImage = function(src) {
-   var img   = new Image();
-   img.src   = src;
+   var img = new Image();
+   img.src = src;
    return img;
  };
 
@@ -27,9 +27,9 @@ var imageRepository = new function() {
 	this.background = new Image();
 	this.animal = new Image();
 	// defined the enemy images
+  this.bird = new Image();
 	this.woodenStump = new Image();
 	this.woodenLog = new Image();
-	this.bird = new Image();
 	// changed it from 2 -> 5 for the stump and log
 	var numImages = 5;
 	var numLoaded = 0;
@@ -49,13 +49,13 @@ var imageRepository = new function() {
 		imageLoaded();
 	}
 	// onload this stump and log
+  this.bird.onload = function() {
+    imageLoaded();
+  }
 	this.woodenStump.onload = function() {
 		imageLoaded();
 	}
 	this.woodenLog.onload = function() {
-		imageLoaded();
-	}
-	this.bird.onload = function() {
 		imageLoaded();
 	}
 
@@ -63,18 +63,9 @@ var imageRepository = new function() {
 	this.background.src = "imgs/Forest-Game-Background.png";
 	this.animal.src = "imgs/rabbits/Rabbit_1.png";
 	// setting thr images for the stump/log/bird
-  	this.bird.src = "imgs/bird.png";
-
-
-    this.woodenStump.src = "imgs/frog.png";
-    this.woodenLog.src = "imgs/panda.png";
-
-
-
-	// this.woodenStump.src = "imgs/stump2.png";
-	// this.woodenLog.src = "imgs/log.png";
-
-
+	this.bird.src = "imgs/bird.png";
+  this.woodenStump.src = "imgs/frog.png";
+  this.woodenLog.src = "imgs/panda.png";
 
 }
 
@@ -179,7 +170,7 @@ function Game() {
 	 var temp = Math.floor(Math.random()*25+1);
    if(temp % 9 == 0){
      var x = this.enemyCanvas.width - imageRepository.bird.width;
-     var y = this.enemyCanvas.height/4*3-50 +20;
+     var y = this.enemyCanvas.height/4*3-50+20;
 		 // console.log("LOG");
 		 // this.logPool.get(x,y,2);
 
@@ -188,13 +179,13 @@ function Game() {
 	 }
 	 else if(temp % 9 == 1){
 		 var x = this.enemyCanvas.width - imageRepository.woodenStump.width*(1/10)-10;
-		 var y = this.enemyCanvas.height/4*3+100-50 +20;
+		 var y = this.enemyCanvas.height/4*3+100-50+20;
 		 console.log("STUMP");
 		 this.stumpPool.get(x,y,2);
 	 }
 	 else if(temp % 9 == 2){
      var x = this.enemyCanvas.width - imageRepository.woodenLog.width*(1/20)-5;
-		 var y = this.enemyCanvas.height/4*3+50-50 +20;
+		 var y = this.enemyCanvas.height/4*3+50-50+20;
 		 // console.log("BIRD");
 		 // this.birdPool.get(x,y,2);
 
@@ -205,9 +196,6 @@ function Game() {
  };
 }
 
-
-// var x = this.enemyCanvas.width - imageRepository.bird.width;
-// var y = this.enemyCanvas.height/4*3+13-50;
 
 /**
 * The animation loop. Calls the requestAnimationFrame shim to
