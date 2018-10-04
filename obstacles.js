@@ -28,25 +28,24 @@ function Enemy(object) {
 		this.context.clearRect(this.x, this.y, this.width, this.height);
 
     this.x -= this.speed;
-
-    if(self == "woodenStump" && this.x <= 0 - this.width){
+    if(self == "bird" && this.x <= 0 - this.width){
+      return true;
+    }
+    else if(self == "woodenStump" && this.x <= 0 - this.width){
       return true;
     }
     else if(self == "woodenLog" && this.x <= 0 - this.width){
       return true;
     }
-    else if(self == "bird" && this.x <= 0 - this.width){
-      return true;
-    }
     else{
-      if (self === "woodenStump") {
+      if (self === "bird") {
+        this.context.drawImage(imageRepository.bird, this.x, this.y, this.width, this.height);
+      }
+      else if (self === "woodenStump") {
         this.context.drawImage(imageRepository.woodenStump, this.x, this.y,this.width/*(1/15)-10*/, this.height/**(1/15)-10*/);
       }
       else if (self === "woodenLog") {
         this.context.drawImage(imageRepository.woodenLog, this.x, this.y, this.width/*(1/20)-10*/, this.height/*(1/20)-10*/);
-      }
-      else if (self === "bird") {
-        this.context.drawImage(imageRepository.bird, this.x, this.y, this.width, this.height);
       }
       return false;
     }

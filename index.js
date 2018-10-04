@@ -176,14 +176,8 @@ function Game() {
 	 var chance = Math.floor(Math.random()*161);
 	 // console.log("chance = "+chance);
 	 if (chance % 15 == 0) {
-	 var temp = Math.floor(Math.random()*20+1);
-	 if(temp % 9 == 0){
-		 var x = this.enemyCanvas.width - imageRepository.woodenStump.width*(1/10)-10;
-		 var y = this.enemyCanvas.height/4*3+100-50 +20;
-		 console.log("STUMP");
-		 this.stumpPool.get(x,y,2);
-	 }
-	 else if(temp % 9 == 1){
+	 var temp = Math.floor(Math.random()*25+1);
+   if(temp % 9 == 0){
      var x = this.enemyCanvas.width - imageRepository.bird.width;
      var y = this.enemyCanvas.height/4*3-50 +20;
 		 // console.log("LOG");
@@ -191,6 +185,12 @@ function Game() {
 
      console.log("BIRD");
      this.birdPool.get(x,y,2);
+	 }
+	 else if(temp % 9 == 1){
+		 var x = this.enemyCanvas.width - imageRepository.woodenStump.width*(1/10)-10;
+		 var y = this.enemyCanvas.height/4*3+100-50 +20;
+		 console.log("STUMP");
+		 this.stumpPool.get(x,y,2);
 	 }
 	 else if(temp % 9 == 2){
      var x = this.enemyCanvas.width - imageRepository.woodenLog.width*(1/20)-5;
