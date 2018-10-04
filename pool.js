@@ -17,25 +17,25 @@
 	 * Populates the pool array with the given object
 	 */
 	this.init = function(object) {
-    if (object == "bird") {
+    if (object == "enemy1") {
 			for (var i = 0; i < size; i++) {
-				var bird = new Enemy("bird");
-				bird.init(0,0, imageRepository.bird.width, imageRepository.bird.height);
-				pool[i] = bird;
+				var enemy1 = new Enemy("enemy1");
+				enemy1.init(0,0, imageRepository.enemy1.width, imageRepository.enemy1.height);
+				pool[i] = enemy1;
 			}
 		}
-		else if (object == "woodenStump") {
+		else if (object == "enemy2") {
 			for (var i = 0; i < size; i++) {
-				var stump = new Enemy("woodenStump");
-				stump.init(0,0, imageRepository.woodenStump.width, imageRepository.woodenStump.height);
-				pool[i] = stump;
+				var enemy2 = new Enemy("enemy2");
+				enemy2.init(0,0, imageRepository.enemy2.width, imageRepository.enemy2.height);
+				pool[i] = enemy2;
 			}
 		}
-		else if (object == "woodenLog") {
+		else if (object == "enemy3") {
 			for (var i = 0; i < size; i++) {
-				var log = new Enemy("woodenLog");
-				log.init(0,0, imageRepository.woodenLog.width, imageRepository.woodenLog.height);
-				pool[i] = log;
+				var enemy3 = new Enemy("enemy3");
+				enemy3.init(0,0, imageRepository.enemy3.width, imageRepository.enemy3.height);
+				pool[i] = enemy3;
 			}
 		}
 	};

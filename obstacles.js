@@ -28,24 +28,24 @@ function Enemy(object) {
 		this.context.clearRect(this.x, this.y, this.width, this.height);
 
     this.x -= this.speed;
-    if(self == "bird" && this.x <= 0 - this.width){
+    if(self == "enemy1" && this.x <= 0 - this.width){
       return true;
     }
-    else if(self == "woodenStump" && this.x <= 0 - this.width){
+    else if(self == "enemy2" && this.x <= 0 - this.width){
       return true;
     }
-    else if(self == "woodenLog" && this.x <= 0 - this.width){
+    else if(self == "enemy3" && this.x <= 0 - this.width){
       return true;
     }
     else{
-      if (self === "bird") {
-        this.context.drawImage(imageRepository.bird, this.x, this.y, this.width, this.height);
+      if (self === "enemy1") {
+        this.context.drawImage(imageRepository.enemy1, this.x, this.y, this.width, this.height);
       }
-      else if (self === "woodenStump") {
-        this.context.drawImage(imageRepository.woodenStump, this.x, this.y,this.width/*(1/15)-10*/, this.height/**(1/15)-10*/);
+      else if (self === "enemy2") {
+        this.context.drawImage(imageRepository.enemy2, this.x, this.y,this.width/*(1/15)-10*/, this.height/**(1/15)-10*/);
       }
-      else if (self === "woodenLog") {
-        this.context.drawImage(imageRepository.woodenLog, this.x, this.y, this.width/*(1/20)-10*/, this.height/*(1/20)-10*/);
+      else if (self === "enemy3") {
+        this.context.drawImage(imageRepository.enemy3, this.x, this.y, this.width/*(1/20)-10*/, this.height/*(1/20)-10*/);
       }
       return false;
     }
