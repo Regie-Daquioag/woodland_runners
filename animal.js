@@ -22,12 +22,18 @@ function Animal() {
 
 			if (KEY_STATUS.up) {
 				this.y -= this.speed
-				if (this.y <= this.canvasHeight/4*3)
+				if (this.y <= this.canvasHeight/4*3 || animalPosition == "bottom")
 					this.y = this.canvasHeight/4*3;
-			} else if (KEY_STATUS.down) {
+					animalPosition = "top";
+					console.log(animalPosition);
+			}
+			else if (KEY_STATUS.down) {
 				this.y += this.speed
-				if (this.y >= this.canvasHeight - this.height)
+				if (this.y >= this.canvasHeight - this.height || animalPosition == "top"){
 					this.y = this.canvasHeight - this.height;
+					animalPosition = "bottom";
+					console.log(animalPosition);
+				}
 			}
 			// Finish by redrawing the animal
 			// if (!this.isColliding) {

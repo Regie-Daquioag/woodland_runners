@@ -4,6 +4,8 @@
  * singleton.
  */
 
+ var animalPosition = "middle";
+
  var game = new Game();
  function init() {
  	if(game.init())
@@ -19,8 +21,6 @@
    img.src = src;
    return img;
  };
-
-
 
 var imageRepository = new function() {
 	// Define images
@@ -62,7 +62,6 @@ var imageRepository = new function() {
 	// Set images src
 	this.background.src = "imgs/Forest-Game-Background.png";
 	this.animal.src = "imgs/rabbits/Rabbit_1.png";
-	// setting thr images for the stump/log/enemy1
 	this.enemy1.src = "imgs/bird.png";
   this.enemy2.src = "imgs/frog.png";
   this.enemy3.src = "imgs/panda.png";
@@ -171,19 +170,19 @@ function Game() {
    if(temp % 9 == 0){
      var x = this.enemyCanvas.width - imageRepository.enemy1.width;
      var y = this.enemyCanvas.height/4*3/*-50+20*/;
-     console.log("bird");
+     // console.log("bird");
      this.enemy1Pool.get(x,y,2);
 	 }
 	 else if(temp % 9 == 1){
      var x = this.enemyCanvas.width - imageRepository.enemy3.width;
-     var y = this.enemyCanvas.height/4*3 + imageRepository.enemy2.width*2/*+50-50+20*/;
-		 console.log("frog");
+     var y = this.enemyCanvas.height/4*3 + imageRepository.enemy2.height*2/*+50-50+20*/;
+		 // console.log("frog");
 		 this.enemy2Pool.get(x,y,2);
 	 }
 	 else if(temp % 9 == 2){
      var x = this.enemyCanvas.width - imageRepository.enemy2.width;
-		 var y = this.enemyCanvas.height  - imageRepository.enemy2.width*2 /*/4*3+100-50+20*/;
-     console.log("panda");
+		 var y = this.enemyCanvas.height  - imageRepository.enemy2.height*2 /*/4*3+100-50+20*/;
+     // console.log("panda");
 		 this.enemy3Pool.get(x,y,2);
 	 }
  }
