@@ -15,11 +15,11 @@ function Animal() {
 	};
 	this.move = function() {
 		// Determine if the action is move action
-		if (KEY_STATUS.left || KEY_STATUS.right ||
-			KEY_STATUS.down || KEY_STATUS.up) {
+		if (KEY_STATUS.down || KEY_STATUS.up) {
 			// The animal moved, so erase it's current image so it can
 			// be redrawn in it's new location
 			this.context.clearRect(this.x, this.y, this.width, this.height);
+
 			if (KEY_STATUS.up) {
 				this.y -= this.speed
 				if (this.y <= this.canvasHeight/4*3)
@@ -30,9 +30,10 @@ function Animal() {
 					this.y = this.canvasHeight - this.height;
 			}
 			// Finish by redrawing the animal
-			if (!this.isColliding) {
-				this.draw();
-			}
+			// if (!this.isColliding) {
+			// 	this.draw();
+			// }
+			this.draw();
 		}
 	};
 }

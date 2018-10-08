@@ -76,8 +76,8 @@ function Drawable() {
 		// Defualt variables
 		this.x = x;
 		this.y = y;
-		this.width = width*2.5;
-		this.height = height*2.5;
+		this.width = width*2;
+		this.height = height*2;
 	}
 	this.speed = 0;
   this.canvasWidth = 0;
@@ -99,18 +99,10 @@ function Drawable() {
 * the game.
 */
 function Game() {
- /*
-	* Gets canvas information and context and sets up all game
-	* objects.
-	* Returns true if the canvas is supported and false if it
-	* is not. This is to stop the animation script from constantly
-	* running on browsers that do not support the canvas.
-	*/
  this.init = function() {
 	 // Get the canvas elements
 	 this.bgCanvas = document.getElementById('background');
 	 this.animalCanvas = document.getElementById('animal');
-	 // getting the canvas element for the stump/log (main)
 	 this.enemyCanvas = document.getElementById('main');
 
 	 // Test to see if canvas is supported. Only need to
@@ -118,7 +110,6 @@ function Game() {
 	 if (this.bgCanvas.getContext) {
 		 this.bgContext = this.bgCanvas.getContext('2d');
 		 this.animalContext = this.animalCanvas.getContext('2d');
-		 // setting up the enemy Context for the main canvas
 		 this.enemyContext = this.enemyCanvas.getContext('2d');
 
 		 // Initialize objects to contain their context and canvas
@@ -131,7 +122,6 @@ function Game() {
 		 Animal.prototype.canvasWidth = this.animalCanvas.width;
 		 Animal.prototype.canvasHeight = this.animalCanvas.height;
 
-		 // initialized the enemy object to conatin context and canvas info
 		 Enemy.prototype.context = this.enemyContext;
 		 Enemy.prototype.canvasWidth = this.enemyCanvas.width;
 		 Enemy.prototype.canvasHeight = this.enemyCanvas.height;
@@ -143,7 +133,7 @@ function Game() {
 		 this.animal = new Animal();
 		 // Set the animal to start near the bottom left of the canvas
 		 var animalStartX = this.animalCanvas.width/12 - imageRepository.animal.width;
-		 var animalStartY = this.animalCanvas.height/4*3+20;
+		 var animalStartY = this.animalCanvas.height/4*3+imageRepository.animal.width*2;
 		 this.animal.init(animalStartX, animalStartY, imageRepository.animal.width,
 										imageRepository.animal.height);
 
@@ -155,7 +145,7 @@ function Game() {
 			this.enemy2Pool = new Pool(1);
 			this.enemy2Pool.init("enemy2");
 
-			this.enemy3Pool = new Pool(2);
+			this.enemy3Pool = new Pool(1);
 			this.enemy3Pool.init("enemy3");
 
       // Start QuadTree
@@ -180,49 +170,25 @@ function Game() {
 	 var temp = Math.floor(Math.random()*25+1);
    if(temp % 9 == 0){
      var x = this.enemyCanvas.width - imageRepository.enemy1.width;
-     var y = this.enemyCanvas.height/4*3-50+20;
-     console.log("enemy1");
+     var y = this.enemyCanvas.height/4*3/*-50+20*/;
+     console.log("bird");
      this.enemy1Pool.get(x,y,2);
 	 }
 	 else if(temp % 9 == 1){
-		 var x = this.enemyCanvas.width - imageRepository.enemy2.width*(1/10)-10;
-		 var y = this.enemyCanvas.height/4*3+100-50+20;
-		 console.log("enemy2");
+     var x = this.enemyCanvas.width - imageRepository.enemy3.width;
+     var y = this.enemyCanvas.height/4*3 + imageRepository.enemy2.width*2/*+50-50+20*/;
+		 console.log("frog");
 		 this.enemy2Pool.get(x,y,2);
 	 }
 	 else if(temp % 9 == 2){
-     var x = this.enemyCanvas.width - imageRepository.enemy3.width*(1/20)-5;
-		 var y = this.enemyCanvas.height/4*3+50-50+20;
-     console.log("enemy3");
+     var x = this.enemyCanvas.width - imageRepository.enemy2.width;
+		 var y = this.enemyCanvas.height  - imageRepository.enemy2.width*2 /*/4*3+100-50+20*/;
+     console.log("panda");
 		 this.enemy3Pool.get(x,y,2);
 	 }
  }
  };
 }
-
-
-function detectCollision() {
-	var objects = [];
-	game.quadTree.getAllObjects(objects);
-
-	for (var x = 0, len = objects.length; x < len; x++) {
-		game.quadTree.findObjects(obj = [], objects[x]);
-
-		for (var y = 0, length = obj.length; y < length; y++) {
-
-			// DETECT COLLISION ALGORITHM
-			if (objects[x].collidableWith === obj[y].type &&
-				(objects[x].x < obj[y].x + obj[y].width &&
-			     objects[x].x + objects[x].width > obj[y].x &&
-				 objects[x].y < obj[y].y + obj[y].height &&
-				 objects[x].y + objects[x].height > obj[y].y)) {
-				objects[x].isColliding = true;
-				obj[y].isColliding = true;
-			}
-		}
-	}
-};
-
 
 /**
 * The animation loop. Calls the requestAnimationFrame shim to
@@ -248,6 +214,28 @@ function animate() {
   game.enemy3Pool.animate();
   game.loop();
 }
+
+function detectCollision() {
+	var objects = [];
+	game.quadTree.getAllObjects(objects);
+
+	for (var x = 0, len = objects.length; x < len; x++) {
+		game.quadTree.findObjects(obj = [], objects[x]);
+
+		for (var y = 0, length = obj.length; y < length; y++) {
+
+			// DETECT COLLISION ALGORITHM
+			if (objects[x].collidableWith === obj[y].type &&
+				(objects[x].x < obj[y].x + obj[y].width &&
+			     objects[x].x + objects[x].width > obj[y].x &&
+				 objects[x].y < obj[y].y + obj[y].height &&
+				 objects[x].y + objects[x].height > obj[y].y)) {
+				objects[x].isColliding = true;
+				obj[y].isColliding = true;
+			}
+		}
+	}
+};
 
 window.requestAnimFrame = function(){
 	return  window.requestAnimationFrame   ||

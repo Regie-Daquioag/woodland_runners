@@ -2,8 +2,8 @@
  * Create the Enemy ship object.
  */
 function Enemy(object) {
-	var percentFire = .01;
-	var chance = 0;
+	// var percentFire = .01;
+	// var chance = 0;
   var self = object;
 	this.alive = false;
   this.collidableWith = "animal";
