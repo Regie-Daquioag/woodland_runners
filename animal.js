@@ -21,20 +21,43 @@ function Animal() {
 			this.context.clearRect(this.x, this.y, this.width, this.height);
 
 			if (KEY_STATUS.up) {
-				this.y -= this.speed
-				if (this.y <= this.canvasHeight/4*3 || animalPosition == "bottom")
+
+				// if(this.y <= this.canvasHeight - this.height && this.y > this.canvasHeight/4*3 + this.height ){
+				// 	this.y = this.canvasHeight/4*3 + this.height;
+				// }
+				// if(this.y <= this.canvasHeight/4*3 + this.height && this.y > this.canvasHeight/4*3){
+				// 	this.y = this.canvasHeight/4*3;
+				// }
+
+				if (this.y <= this.canvasHeight/4*3 /*|| animalPosition == "bottom"*/){
 					this.y = this.canvasHeight/4*3;
-					animalPosition = "top";
-					console.log(animalPosition);
+					// animalPosition = "top";
+					// console.log(animalPosition);
+				}
+				else{
+					this.y -= this.speed;
+				}
+
+
 			}
 			else if (KEY_STATUS.down) {
-				this.y += this.speed
-				if (this.y >= this.canvasHeight - this.height || animalPosition == "top"){
+
+				// if(this.y > this.canvasHeight - this.height && this.y <= this.canvasHeight/4*3 + this.height){
+				// 	this.y = this.canvasHeight - this.height;
+				// }
+
+				if (this.y >= this.canvasHeight - this.height /*|| animalPosition == "top"*/){
 					this.y = this.canvasHeight - this.height;
-					animalPosition = "bottom";
-					console.log(animalPosition);
+					// animalPosition = "bottom";
+					// console.log(animalPosition);
 				}
+				else{
+					this.y += this.speed;
+				}
+
 			}
+
+
 			// Finish by redrawing the animal
 			// if (!this.isColliding) {
 			// 	this.draw();
