@@ -5,7 +5,7 @@
  * around the screen.
  */
 function Animal() {
-	this.speed = 3;
+	this.speed = 0.5;
 	this.collidableWith = "enemy";
 	this.type = "animal";
 
@@ -22,38 +22,47 @@ function Animal() {
 
 			if (KEY_STATUS.up) {
 
-				// if(this.y <= this.canvasHeight - this.height && this.y > this.canvasHeight/4*3 + this.height ){
-				// 	this.y = this.canvasHeight/4*3 + this.height;
-				// }
-				// if(this.y <= this.canvasHeight/4*3 + this.height && this.y > this.canvasHeight/4*3){
-				// 	this.y = this.canvasHeight/4*3;
-				// }
+				// bot-to-mid
+				if(this.y <= this.canvasHeight - this.height && this.y > this.canvasHeight/4*3 + this.height ){
+					this.y = this.canvasHeight/4*3 + this.height;
+				}
 
-				if (this.y <= this.canvasHeight/4*3 /*|| animalPosition == "bottom"*/){
+				// mid-to-top
+				else if(this.y <= this.canvasHeight/4*3 + this.height && this.y > this.canvasHeight/4*3){
 					this.y = this.canvasHeight/4*3;
-					// animalPosition = "top";
-					// console.log(animalPosition);
 				}
-				else{
-					this.y -= this.speed;
-				}
+
+				// if (this.y <= this.canvasHeight/4*3 /*|| animalPosition == "bottom"*/){
+				// 	this.y = this.canvasHeight/4*3;
+				// 	// animalPosition = "top";
+				// 	// console.log(animalPosition);
+				// }
+				// else{
+				// 	this.y -= this.speed;
+				// }
 
 
 			}
 			else if (KEY_STATUS.down) {
 
-				// if(this.y > this.canvasHeight - this.height && this.y <= this.canvasHeight/4*3 + this.height){
-				// 	this.y = this.canvasHeight - this.height;
-				// }
-
-				if (this.y >= this.canvasHeight - this.height /*|| animalPosition == "top"*/){
+				// mid-to-bot
+				if(this.y >= this.canvasHeight/4*3 + this.height && this.y < this.canvasHeight - this.height){
 					this.y = this.canvasHeight - this.height;
-					// animalPosition = "bottom";
-					// console.log(animalPosition);
 				}
-				else{
-					this.y += this.speed;
+
+				// top-to-mid
+				else if(this.y >= this.canvasHeight/4*3 && this.y < this.canvasHeight/4*3 + this.height){
+					this.y = this.canvasHeight/4*3 + this.height;
 				}
+
+				// if (this.y >= this.canvasHeight - this.height /*|| animalPosition == "top"*/){
+				// 	this.y = this.canvasHeight - this.height;
+				// 	// animalPosition = "bottom";
+				// 	// console.log(animalPosition);
+				// }
+				// else{
+				// 	this.y += this.speed;
+				// }
 
 			}
 
@@ -61,12 +70,12 @@ function Animal() {
 			// Finish by redrawing the animal
 			// if (!this.isColliding) {
 			// 	this.draw();
-			// }
+			// }BaseObject
 			this.draw();
 		}
 	};
 }
-Animal.prototype = new Drawable();
+Animal.prototype = new BaseObject();
 
 
 // The keycodes that will be mapped when a user presses a button.
@@ -93,7 +102,7 @@ document.onkeydown = function(e) {
   // Firefox and opera use charCode instead of keyCode to
   // return which key was pressed.
   var keyCode = (e.keyCode) ? e.keyCode : e.charCode;
-  if (KEY_CODES[keyCode]) {
+   if (KEY_CODES[keyCode]) {
     e.preventDefault();
     KEY_STATUS[KEY_CODES[keyCode]] = true;
   }

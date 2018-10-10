@@ -68,4 +68,4 @@ function Enemy(object) {
     this.isColliding = false;
 	};
 }
-Enemy.prototype = new Drawable();
+Enemy.prototype = new BaseObject();

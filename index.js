@@ -30,7 +30,7 @@ var imageRepository = new function() {
   this.enemy1 = new Image();
 	this.enemy2 = new Image();
 	this.enemy3 = new Image();
-	// changed it from 2 -> 5 for the stump and log
+
 	var numImages = 5;
 	var numLoaded = 0;
 
@@ -69,7 +69,7 @@ var imageRepository = new function() {
 }
 
 
-function Drawable() {
+function BaseObject() {
 	console.log("went in the drawable function");
 	this.init = function(x, y, width, height) {
 		// Defualt variables

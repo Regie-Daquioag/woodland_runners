@@ -17,4 +17,4 @@ function Background() {
 	};
 }
 // Set Background to inherit properties from Drawable
-Background.prototype = new Drawable();
+Background.prototype = new BaseObject();
