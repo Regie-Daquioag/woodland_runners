@@ -9,6 +9,16 @@ function Animal() {
 	this.collidableWith = "enemy";
 	this.type = "animal";
 
+	this.init = function(x, y, width, height) {
+	// Defualt variables
+	this.x = x;
+	this.y = y;
+	this.width = width*2;
+	this.height = height*2;
+	this.alive = true;
+	this.isColliding = false;
+}
+
 	this.draw = function() {
 		// is this the position of where the animal wil be
 		this.context.drawImage(imageRepository.animal, this.x, this.y,this.width,this.height);
@@ -65,13 +75,18 @@ function Animal() {
 				// }
 
 			}
+			// 	// Finish by redrawing the animal
+			// 	if (!this.isColliding) {
+			// 		this.draw();
+			// 	}
+			// 	else {
+			// 	this.alive = false;
+			// 	// game.gameOver();
+			// 	// this.draw();
+			// }
 
-
-			// Finish by redrawing the animal
-			// if (!this.isColliding) {
-			// 	this.draw();
-			// }BaseObject
 			this.draw();
+
 		}
 	};
 }

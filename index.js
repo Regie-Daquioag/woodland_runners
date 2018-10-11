@@ -187,6 +187,42 @@ function Game() {
 	 }
  }
  };
+
+ // // Restart the game
+ // this.restart = function() {
+ //   this.gameOverAudio.pause();
+ //
+ //   document.getElementById('game-over').style.display = "none";
+ //   this.bgContext.clearRect(0, 0, this.bgCanvas.width, this.bgCanvas.height);
+ //   this.shipContext.clearRect(0, 0, this.shipCanvas.width, this.shipCanvas.height);
+ //   this.mainContext.clearRect(0, 0, this.mainCanvas.width, this.mainCanvas.height);
+ //
+ //   this.quadTree.clear();
+ //
+ //   this.background.init(0,0);
+ //   this.ship.init(this.shipStartX, this.shipStartY,
+ //                  imageRepository.spaceship.width, imageRepository.spaceship.height);
+ //
+ //   this.enemyPool.init("enemy");
+ //   this.spawnWave();
+ //   this.enemyBulletPool.init("enemyBullet");
+ //
+ //   this.playerScore = 0;
+ //
+ //   this.backgroundAudio.currentTime = 0;
+ //   this.backgroundAudio.play();
+ //
+ //   this.start();
+ // };
+ //
+ // // Game over
+ // this.gameOver = function() {
+ //   this.backgroundAudio.pause();
+ //   this.gameOverAudio.currentTime = 0;
+ //   this.gameOverAudio.play();
+ //   document.getElementById('game-over').style.display = "block";
+ // };
+
 }
 
 /**
@@ -203,15 +239,19 @@ function animate() {
 	game.quadTree.insert(game.enemy2Pool.getPool());
 	game.quadTree.insert(game.enemy3Pool.getPool());
 
-  detectCollision();
 
-  requestAnimFrame( animate );
-  game.background.draw();
-  game.animal.move();
-  game.enemy1Pool.animate();
-  game.enemy2Pool.animate();
-  game.enemy3Pool.animate();
-  game.loop();
+  if(game.animal.alive){
+
+    detectCollision();
+
+    requestAnimFrame( animate );
+    game.background.draw();
+    game.animal.move();
+    game.enemy1Pool.animate();
+    game.enemy2Pool.animate();
+    game.enemy3Pool.animate();
+    game.loop();
+  }
 }
 
 function detectCollision() {
@@ -231,7 +271,9 @@ function detectCollision() {
 				 objects[x].y + objects[x].height > obj[y].y)) {
 				objects[x].isColliding = true;
 				obj[y].isColliding = true;
+        game.animal.alive = false;
 			}
+
 		}
 	}
 };
