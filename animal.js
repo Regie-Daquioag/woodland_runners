@@ -90,7 +90,7 @@ function Animal() {
 		}
 	};
 }
-Animal.prototype = new BaseObject();
+// Animal.prototype = new BaseObject();
 
 
 // The keycodes that will be mapped when a user presses a button.

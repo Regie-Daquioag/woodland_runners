@@ -9,6 +9,15 @@ function Enemy(object) {
   this.collidableWith = "animal";
 	this.type = "enemy";
 
+  this.init = function(x, y, width, height) {
+  // Defualt variables
+  this.x = x;
+  this.y = y;
+  this.width = width*2;
+  this.height = height*2;
+  this.isColliding = false;
+}
+
 	/*
 	 * Sets the Enemy values
 	 */
@@ -46,10 +55,10 @@ function Enemy(object) {
         this.context.drawImage(imageRepository.enemy1, this.x, this.y, this.width, this.height);
       }
       else if (self === "enemy2") {
-        this.context.drawImage(imageRepository.enemy2, this.x, this.y,this.width/*(1/15)-10*/, this.height/**(1/15)-10*/);
+        this.context.drawImage(imageRepository.enemy2, this.x, this.y,this.width, this.height);
       }
       else if (self === "enemy3") {
-        this.context.drawImage(imageRepository.enemy3, this.x, this.y, this.width/*(1/20)-10*/, this.height/*(1/20)-10*/);
+        this.context.drawImage(imageRepository.enemy3, this.x, this.y, this.width, this.height);
       }
       return false;
     }
@@ -68,4 +77,4 @@ function Enemy(object) {
     this.isColliding = false;
 	};
 }
-Enemy.prototype = new BaseObject();
+// Enemy.prototype = new BaseObject();

@@ -5,6 +5,15 @@
  */
 function Background() {
 	this.speed = 1; // Redefine speed of the background for panning
+
+	this.init = function(x, y, width, height) {
+		// Defualt variables
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+	}
+
 	// Implement abstract function
 	this.draw = function() {
 		this.x += this.speed;
@@ -17,4 +26,4 @@ function Background() {
 	};
 }
 // Set Background to inherit properties from Drawable
-Background.prototype = new BaseObject();
+// Background.prototype = new BaseObject();
