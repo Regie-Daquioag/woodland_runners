@@ -1,10 +1,25 @@
 canvas {
-	display: block;
+	/* display: block; */
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	background: transparent;
 }
+@font-face {
+font-family: Yorktown;
+src: url(yorktown/Yorktown/Yorktown.ttf);
+}
+
+#container {
+	position: relative;
+	height: 496px;
+	width: 318px;
+}
+
+#container canvas, #game-over {
+	position: absolute;
+}
+
 #background {
 	z-index: -2;
 }
@@ -13,4 +28,54 @@ canvas {
 }
 #animal {
 	z-index: 0;
+}
+.game-over {
+	position: absolute;
+	top: 15%;
+	left:10px;
+	color: red;
+	text-shadow: 4px 6px 1px #8e0505;
+	font-family: Yorktown, sans-serif;
+	font-size: 65px;
+	cursor: default;
+	display: none;
+}
+.game-over span {
+	font-size: 25px;
+	text-shadow: 0px 0px 0px #8e0505;
+	cursor: pointer;
+	position: relative;
+}
+.game-over span:hover {
+	color: #8e0505;
+}
+
+.theme {
+	position: absolute;
+	width:318px;
+	height:496px;
+	color: #13cbf4;
+	font-family: 'Yorktown', cursive;
+	font-size: 30px;
+	cursor: default;
+	display: none;
+	background-image: url("imgs/Forest-Game-Background.png");
+}
+
+#title {
+	font-size:60px;
+	text-shadow: 4px 6px 1px #052d6d;
+	margin-top: 45px;
+}
+#play {
+	margin-left: 80px;
+	margin-top: 100px;
+	color: green;
+	font-size: 40px;
+	font-family:Roboto;
+	height:40px;
+	width: 150px;
+	background-image: url("imgs/button.png");
+	background-size:cover;
+
 }
