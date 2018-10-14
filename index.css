@@ -1,10 +1,21 @@
 canvas {
-	display: block;
+	/* display: block; */
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	background: transparent;
 }
+
+#container {
+	position: relative;
+	height: 496px;
+	width: 318px;
+}
+
+#container canvas, #game-over {
+	position: absolute;
+}
+
 #background {
 	z-index: -2;
 }
@@ -13,4 +24,23 @@ canvas {
 }
 #animal {
 	z-index: 0;
+}
+.game-over {
+	position: absolute;
+	top: 20%;
+	left: 20%;
+	color: white;
+	font-family: Helvetica, sans-serif;
+	font-size: 30px;
+	cursor: default;
+	display: none;
+}
+.game-over span {
+	font-size: 20px;
+	cursor: pointer;
+	position: relative;
+	left: 50px;
+}
+.game-over span:hover {
+	color: #FFD700;
 }

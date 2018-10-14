@@ -91,9 +91,9 @@ function Game() {
 		 // Initialize the animal object
 		 this.animal = new Animal();
 		 // Set the animal to start near the bottom left of the canvas
-		 var animalStartX = this.animalCanvas.width/12 - imageRepository.animal.width;
-		 var animalStartY = this.animalCanvas.height/4*3+imageRepository.animal.width*2;
-		 this.animal.init(animalStartX, animalStartY, imageRepository.animal.width,
+		 this.animalStartX = this.animalCanvas.width/12 - imageRepository.animal.width;
+		 this.animalStartY = this.animalCanvas.height/4*3+imageRepository.animal.width*2;
+		 this.animal.init(this.animalStartX, this.animalStartY, imageRepository.animal.width,
 										imageRepository.animal.height);
 
 
@@ -149,40 +149,32 @@ function Game() {
  }
  };
 
- // // Restart the game
- // this.restart = function() {
- //   this.gameOverAudio.pause();
- //
- //   document.getElementById('game-over').style.display = "none";
- //   this.bgContext.clearRect(0, 0, this.bgCanvas.width, this.bgCanvas.height);
- //   this.shipContext.clearRect(0, 0, this.shipCanvas.width, this.shipCanvas.height);
- //   this.mainContext.clearRect(0, 0, this.mainCanvas.width, this.mainCanvas.height);
- //
- //   this.quadTree.clear();
- //
- //   this.background.init(0,0);
- //   this.ship.init(this.shipStartX, this.shipStartY,
- //                  imageRepository.spaceship.width, imageRepository.spaceship.height);
- //
- //   this.enemyPool.init("enemy");
- //   this.spawnWave();
- //   this.enemyBulletPool.init("enemyBullet");
- //
- //   this.playerScore = 0;
- //
- //   this.backgroundAudio.currentTime = 0;
- //   this.backgroundAudio.play();
- //
- //   this.start();
- // };
- //
- // // Game over
- // this.gameOver = function() {
- //   this.backgroundAudio.pause();
- //   this.gameOverAudio.currentTime = 0;
- //   this.gameOverAudio.play();
- //   document.getElementById('game-over').style.display = "block";
- // };
+ // Restart the game
+ this.restart = function() {
+
+   document.getElementById('game-over').style.display = "none";
+   this.bgContext.clearRect(0, 0, this.bgCanvas.width, this.bgCanvas.height);
+   this.animalContext.clearRect(0, 0, this.animalCanvas.width, this.animalCanvas.height);
+   this.enemyContext.clearRect(0, 0, this.enemyCanvas.width, this.enemyCanvas.height);
+
+   this.quadTree.clear();
+
+   this.background.init(0,0);
+   this.animal.init(this.animalStartX, this.animalStartY, imageRepository.animal.width,
+                  imageRepository.animal.height);
+
+   this.enemy1Pool.init("enemy1");
+   this.enemy2Pool.init("enemy2");
+   this.enemy3Pool.init("enemy3");
+
+
+   this.start();
+ };
+
+ // Game over
+ this.gameOver = function() {
+   document.getElementById('game-over').style.display = "block";
+ };
 
 }
 
@@ -226,7 +218,7 @@ function detectCollision() {
 				 objects[x].y + objects[x].height > obj[y].y)) {
 				objects[x].isColliding = true;
 				obj[y].isColliding = true;
-        game.animal.alive = false;
+        // game.animal.alive = false;
 			}
 
 		}

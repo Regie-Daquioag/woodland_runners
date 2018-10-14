@@ -2,7 +2,7 @@ function Animal() {
 	this.speed = 0.5;
 	this.collidableWith = "enemy";
 	this.type = "animal";
-	
+
 	// Defualt variables
 	this.init = function(x, y, width, height) {
 	this.x = x;
@@ -34,7 +34,15 @@ function Animal() {
 			else{
 				this.y = this.canvasHeight/4*3 + this.height;
 			}
+			
+			// Redraw the ship
+		if (!this.isColliding) {
 			this.draw();
+		}
+		else {
+			this.alive = false;
+			game.gameOver();
+		}
 	};
 }
 

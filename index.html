@@ -5,12 +5,19 @@
 		<link href = "index.css" rel = "stylesheet" type = "text/css">
 	</head>
 	<body>
-		<!-- The canvas for the panning background -->
-		<canvas id="background" width="318" height="496"></canvas>
-		<!-- The canvas for all enemy ships and bullets -->
-		<canvas id="main" width="318" height="496"></canvas>
-		<!-- The canvas the ship uses (can only move up one forth the screen.) -->
-		<canvas id="animal" width="318" height="496"></canvas>
+
+		<div id="container">
+			<!-- The canvas for the panning background -->
+			<canvas id="background" width="318" height="496"></canvas>
+			<!-- The canvas for all enemy ships and bullets -->
+			<canvas id="main" width="318" height="496"></canvas>
+			<!-- The canvas the ship uses (can only move up one forth the screen.) -->
+			<canvas id="animal" width="318" height="496"></canvas>
+
+			<div class="game-over" id="game-over">GAME OVER<p><span onclick="game.restart()">Restart</span></p></div>
+			
+		</div>
+
 
 		<script src="index.js"></script>
 		<script src="background.js"></script>
