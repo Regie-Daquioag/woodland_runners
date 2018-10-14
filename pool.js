@@ -13,9 +13,6 @@
   		return obj;
   	}
 
-	/*
-	 * Populates the pool array with the given object
-	 */
 	this.init = function(object) {
     if (object == "enemy1") {
 			for (var i = 0; i < size; i++) {
@@ -46,10 +43,6 @@
 		}
 	};
 
-	/*
-	 * Grabs the last item in the list and initializes it and
-	 * pushes it to the front of the array.
-	 */
 	this.get = function(x, y, speed) {
 		if(!pool[size - 1].alive) {
 			pool[size - 1].spawn(x, y, speed);
@@ -57,10 +50,6 @@
 		}
 	};
 
-	/*
-	 * Draws any in use Bullets. If a bullet goes off the screen,
-	 * clears it and pushes it to the front of the array.
-	 */
 	this.animate = function() {
 		for (var i = 0; i < size; i++) {
 			// Only draw until we find a bullet that is not alive

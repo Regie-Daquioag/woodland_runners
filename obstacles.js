@@ -1,9 +1,4 @@
-/**
- * Create the Enemy ship object.
- */
 function Enemy(object) {
-	// var percentFire = .01;
-	// var chance = 0;
   var self = object;
 	this.alive = false;
   this.collidableWith = "animal";
@@ -18,9 +13,6 @@ function Enemy(object) {
   this.isColliding = false;
 }
 
-	/*
-	 * Sets the Enemy values
-	 */
 	this.spawn = function(x, y, speed) {
 		this.x = x;
 		this.y = y;
@@ -31,9 +23,6 @@ function Enemy(object) {
 
 	};
 
-	/*
-	 * Move the enemy
-	 */
 	this.draw = function() {
 		this.context.clearRect(this.x, this.y, this.width, this.height);
     this.x -= this.speed;
@@ -64,9 +53,6 @@ function Enemy(object) {
     }
 	};
 
-	/*
-	 * Resets the enemy values
-	 */
 	this.clear = function() {
 		this.x = 0;
 		this.y = 0;
@@ -77,4 +63,3 @@ function Enemy(object) {
     this.isColliding = false;
 	};
 }
-// Enemy.prototype = new BaseObject();

@@ -1,13 +1,3 @@
-/**
- * QuadTree object.
- *
- * The quadrant indexes are numbered as below:
- *     |
- *  1  |  0
- * ----+----
- *  2  |  3
- *     |
- */
 function QuadTree(boundBox, lvl) {
 	var maxObjects = 10;
 	this.bounds = boundBox || {
@@ -21,9 +11,6 @@ function QuadTree(boundBox, lvl) {
 	var level = lvl || 0;
 	var maxLevels = 5;
 
-	/*
-	 * Clears the quadTree and all nodes of objects
-	 */
 	this.clear = function() {
 		objects = [];
 
@@ -34,9 +21,6 @@ function QuadTree(boundBox, lvl) {
 		this.nodes = [];
 	};
 
-	/*
-	 * Get all objects in the quadTree
-	 */
 	this.getAllObjects = function(returnedObjects) {
 		for (var i = 0; i < this.nodes.length; i++) {
 			this.nodes[i].getAllObjects(returnedObjects);
@@ -49,9 +33,6 @@ function QuadTree(boundBox, lvl) {
 		return returnedObjects;
 	};
 
-	/*
-	 * Return all objects that the object could collide with
-	 */
 	this.findObjects = function(returnedObjects, obj) {
 		if (typeof obj === "undefined") {
 			console.log("UNDEFINED OBJECT");
@@ -70,11 +51,6 @@ function QuadTree(boundBox, lvl) {
 		return returnedObjects;
 	};
 
-	/*
-	 * Insert the object into the quadTree. If the tree
-	 * excedes the capacity, it will split and add all
-	 * objects to their corresponding nodes.
-	 */
 	this.insert = function(obj) {
 		if (typeof obj === "undefined") {
 			return;
@@ -90,8 +66,7 @@ function QuadTree(boundBox, lvl) {
 
 		if (this.nodes.length) {
 			var index = this.getIndex(obj);
-			// Only add the object to a subnode if it can fit completely
-			// within one
+
 			if (index != -1) {
 				this.nodes[index].insert(obj);
 
@@ -121,11 +96,6 @@ function QuadTree(boundBox, lvl) {
 		}
 	};
 
-	/*
-	 * Determine which node the object belongs to. -1 means
-	 * object cannot completely fit within a node and is part
-	 * of the current node
-	 */
 	this.getIndex = function(obj) {
 
 		var index = -1;
@@ -160,9 +130,6 @@ function QuadTree(boundBox, lvl) {
 		return index;
 	};
 
-	/*
-	 * Splits the node into 4 subnodes
-	 */
 	this.split = function() {
 		// Bitwise or [html5rocks]
 		var subWidth = (this.bounds.width / 2) | 0;

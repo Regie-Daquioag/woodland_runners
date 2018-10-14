@@ -1,19 +1,9 @@
-/**
- * Define an object to hold all our images for the game so images
- * are only ever created once. This type of object is known as a
- * singleton.
- */
-
- var animalPosition = "middle";
-
- var game = new Game();
+var game = new Game();
  function init() {
  	if(game.init())
 	console.log("game started");
  		game.start();
  }
-
-
 
  // Image factory
  var createImage = function(src) {
@@ -48,7 +38,6 @@ var imageRepository = new function() {
 	this.animal.onload = function() {
 		imageLoaded();
 	}
-	// onload this stump and log
   this.enemy1.onload = function() {
     imageLoaded();
   }
@@ -68,35 +57,6 @@ var imageRepository = new function() {
 
 }
 
-//
-// function BaseObject() {
-// 	console.log("went in the drawable function");
-	// this.init = function(x, y, width, height) {
-	// 	// Defualt variables
-	// 	this.x = x;
-	// 	this.y = y;
-	// 	this.width = width*2;
-	// 	this.height = height*2;
-	// }
-// 	this.speed = 0;
-//   this.canvasWidth = 0;
-// 	this.canvasHeight = 0;
-//   this.collidableWith = "";
-// 	this.isColliding = false;
-//
-// 	this.draw = function() {
-// 	};
-// 	this.move = function() {
-// 	};
-//   // this.isCollidableWith = function(object) {
-// 	// 	return (this.collidableWith === object.type);
-// 	// };
-// }
-
-/**
-* Creates the Game object which will hold all objects and data for
-* the game.
-*/
 function Game() {
  this.init = function() {
 	 // Get the canvas elements
@@ -225,12 +185,6 @@ function Game() {
 
 }
 
-/**
-* The animation loop. Calls the requestAnimationFrame shim to
-* optimize the game loop and draws all game objects. This
-* function must be a gobal function and cannot be within an
-* object.
-*/
 function animate() {
   // Insert objects into quadtree
 	game.quadTree.clear();
