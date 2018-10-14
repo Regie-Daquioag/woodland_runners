@@ -11,7 +11,7 @@ function Background() {
 
 	// Implement abstract function
 	this.draw = function() {
-		this.x += this.speed;
+		// this.x -= this.speed;
 
 		this.context.drawImage(imageRepository.background, this.x, this.y);
 		this.context.drawImage(imageRepository.background, this.canvasWidth-Math.abs(this.x), this.y);

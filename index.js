@@ -124,6 +124,7 @@ function Game() {
 
  this.loop = function(){
 	 var chance = Math.floor(Math.random()*161);
+   var spd = 4;
 	 // console.log("chance = "+chance);
 	 if (chance % 15 == 0) {
 	 var temp = Math.floor(Math.random()*25+1);
@@ -131,19 +132,19 @@ function Game() {
      var x = this.enemyCanvas.width - imageRepository.enemy1.width;
      var y = this.enemyCanvas.height/4*3/*-50+20*/;
      // console.log("bird"+y);
-     this.enemy1Pool.get(x,y,2);
+     this.enemy1Pool.get(x,y,spd);
 	 }
 	 else if(temp % 9 == 1){
      var x = this.enemyCanvas.width - imageRepository.enemy3.width;
      var y = this.enemyCanvas.height/4*3 + imageRepository.enemy2.height*2/*+50-50+20*/;
 		 // console.log("frog"+y);
-		 this.enemy2Pool.get(x,y,2);
+		 this.enemy2Pool.get(x,y,spd);
 	 }
 	 else if(temp % 9 == 2){
      var x = this.enemyCanvas.width - imageRepository.enemy2.width;
 		 var y = this.enemyCanvas.height  - imageRepository.enemy2.height*2 /*/4*3+100-50+20*/;
      // console.log("panda"+y);
-		 this.enemy3Pool.get(x,y,2);
+		 this.enemy3Pool.get(x,y,spd);
 	 }
  }
  };
