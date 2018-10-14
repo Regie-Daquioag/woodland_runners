@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Space Shooter Demo</title>
+		<title>Woodland Runners</title>
 		<link href = "index.css" rel = "stylesheet" type = "text/css">
+		<link href="https://fonts.googleapis.com/css?family=Charmonman|Roboto" rel="stylesheet">
 	</head>
 	<body>
 
@@ -14,8 +15,17 @@
 			<!-- The canvas the ship uses (can only move up one forth the screen.) -->
 			<canvas id="animal" width="318" height="496"></canvas>
 
-			<div class="game-over" id="game-over">GAME OVER<p><span onclick="game.restart()">Restart</span></p></div>
-			
+			<div class="theme" id="start">
+				<center id="title">Woodland Runners</center>
+				<div id="play" onclick="game.start()"></div>
+			</div>
+			<div class="game-over" id="game-over">
+				<center>
+					GAME OVER
+					<p><span onclick="game.restart()">Restart</span></p>
+				</center>
+			</div>
+
 		</div>
 
 

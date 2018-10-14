@@ -1,8 +1,8 @@
 var game = new Game();
  function init() {
  	if(game.init())
-	console.log("game started");
- 		game.start();
+	  console.log("game started");
+  document.getElementById('start').style.display = "block";
  }
 
  // Image factory
@@ -118,6 +118,7 @@ function Game() {
  };
  // Start the animation loop
  this.start = function() {
+   document.getElementById('start').style.display = "none";
 	 this.animal.draw();
 	 animate();
  };
